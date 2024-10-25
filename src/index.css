@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+* {
+    font-family: Poppins;
+    scroll-behavior: smooth;
+}
+
+body{
+    background-color: #283036;
+}
+/* Scrollbar'ning umumiy o'lchami */
+::-webkit-scrollbar {
+    width: 8px; /* kengligi */
+}
+/* Scrollbar fon rangi */
+::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* orqa fon */
+}
+
+/* Scrollbarning harakatlanuvchi qismi (thumb) */
+::-webkit-scrollbar-thumb {
+    background-color: #888; /* thumbning rangi */
+    border-radius: 10px; /* dumaloqlik */
+}
+
+/* Scrollbar thumb hover (ustiga sichqoncha olib kelingan holat) */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555; /* thumbning hover holatidagi rangi */
+}
+/* ====================================== */
+.slick-dots li button:before {
+    font-size: 8px; /* Nuqtalarni kattalashtirish */
+    color: white; /* Nuqtalar rangini o'zgartirish */
+    opacity: 1; /* Ko'proq ko'rinarli qilish */
+  }
+  
+  .slick-dots {
+    bottom: -45px; /* Nuqtalarni biroz pastga tushirish */
+}
+
+  .slick-dots li {
+    margin: 0 10px; /* Nuqtalar orasidagi bo'shliqni kengaytirish */
+  }
+.slick-prev,
+.slick-next {
+    position: absolute; /* O'q tugmalarini o'z joyida tutish */
+    top: 50%; /* Vertikal markazlash */
+    transform: translateY(-50%); /* O'rtaga to'g'ri keltirish */
+    z-index: 1; /* Tugmalarni yuqoriga chiqarish */
+}
+
+.slick-prev {
+    left: 30px; /* Chapga joylashish */
+}
+
+.slick-next {
+    right: 30px; /* O'ngga joylashish */
+}
+
+/* Agar o'q tugmalari tashqi konteynerga nisbatan markazda joylashsa */
+.rgb{
+    background-color: rgba(64, 98, 113, 0.5);
+}
