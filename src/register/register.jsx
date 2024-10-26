@@ -5,7 +5,7 @@ function Register() {
     return (
         <>
             <div className='w-[100%] h-[100vh] flex justify-center items-center'>
-                <form action="" className=' py-12 rgb lg:w-[50%] md:w-[80%] w-full sm:mx-6 mx-4 max-sm:px-2 text-white p-6 rounded-lg  gap-6 relative animate-border-draw'>
+                <form action="" className='py-6 sm:py-12 rgb lg:w-[50%] md:w-[80%] w-full sm:mx-6 mx-4 max-sm:px-6 text-white p-6 rounded-lg  gap-6 relative animate-border-draw'>
                     <NavLink to={'/'} className='text-2xl absolute top-6 '><i class="fa-solid fa-arrow-left"></i></NavLink>
                     <h1 className='text-2xl text-center font-semibold'>Ro'yhatdan O'tish</h1>
                     <div className='grid sm:grid-cols-2 gap-6'>
