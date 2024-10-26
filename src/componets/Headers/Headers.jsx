@@ -1,6 +1,6 @@
 import React from 'react'
-import headersImg from '../assets/headersImg.png'
-import { headerData } from '../utils/HeaderData'
+import headersImg from '../../assets/headersImg.png'
+import { headerData } from '../../utils/HeaderData'
 function Headers() {
   return (
     <div className=' bg-[#283036] text-white'>
@@ -18,8 +18,8 @@ function Headers() {
           </div>
           <div className='text-3xl flex gap-8 '>
             <i className="fa-brands fa-facebook"></i>
-            <i class="fa-brands fa-telegram"></i>
-            <i class="fa-brands fa-instagram"></i>
+            <i className="fa-brands fa-telegram"></i>
+            <i className="fa-brands fa-instagram"></i>
           </div>
         </div>
         <div  data-aos="zoom-in" className='w-full  flex justify-end'>

@@ -2,8 +2,8 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import ticher from '../assets/tichers.png'
-import { ticherData } from "../utils/tichersData";
+import ticher from '../../assets/tichers.png'
+import { ticherData } from "../../utils/tichersData";
 
 const Corusel = () => {
   const settings = {

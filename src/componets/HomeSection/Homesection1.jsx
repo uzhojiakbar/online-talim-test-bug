@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import { SecCarddata } from '../utils/section1Data'
+import { SecCarddata } from '../../utils/section1Data'
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import att_logo from '../assets/att_logo.png'
-import { headerData } from '../utils/HeaderData';
+import att_logo from '../../assets/att_logo.png'
+import { headerData } from '../../utils/HeaderData';
 function Homesection1() {
     useEffect(() => {
         AOS.init({
@@ -24,7 +24,7 @@ function Homesection1() {
                 {SecCarddata?.slice(0, count)?.map((item) => (
                     <div data-aos="fade-up" data-aos-delay={`${item.delay}`} key={item.id} className='bg-[#303d46] flex flex-col text-center gap-3 p-6 rounded-lg text-white relative '>
                         <div className='bg-white p-4 rounded-full w-24 mx-auto'>
-                            <img bg- src={att_logo} alt="" className='' />
+                            <img src={att_logo} alt="" className='' />
                         </div>
                         <h1 className='text-[20px] font-bold text-white'>{item.title}</h1>
                         <p className='text-[15px] text-[#8ca5bb]'>{item.decs}</p>
@@ -32,9 +32,9 @@ function Homesection1() {
                         <div className='flex gap-16 mt-6 items-center  justify-between  '>
                             <p className='text-[#8ca5bb] text-[14px] font-[500]'>Dars soni {item.dasrs}</p>
                             <div>
-                                <span className='text-orange-400'><i class="fa-solid fa-star"></i></span>
-                                <span className='text-orange-400'><i class="fa-solid fa-star"></i></span>
-                                <span className='text-orange-400'><i class="fa-solid fa-star"></i></span>
+                                <span className='text-orange-400'><i className="fa-solid fa-star"></i></span>
+                                <span className='text-orange-400'><i className="fa-solid fa-star"></i></span>
+                                <span className='text-orange-400'><i className="fa-solid fa-star"></i></span>
                             </div>
                         </div>
                     </div>

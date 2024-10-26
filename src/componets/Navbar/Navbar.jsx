@@ -1,6 +1,4 @@
 import React, { useState } from 'react'
-import Logo from '../assets/logo.webp'
-import Register from '../register/register'
 import { NavLink } from 'react-router-dom'
 function Navbar() {
     const [navData, setNavda] = useState([
@@ -28,7 +26,6 @@ function Navbar() {
     ])
 
     const [openForm, setOpenForm] = useState(false)
-
     return (
         <div data-aos="filip-left" className=' text-white bg-[#283036] flex py-3 lg:px-16 justify-between items-center'>
             <h1 className='text-4xl'>Att</h1>
@@ -40,7 +37,7 @@ function Navbar() {
                 ))}
             </div>
             <div className='flex gap-6 items-center'>
-                <button>Kirish</button>
+                <NavLink to={'/login'}>Kirish</NavLink >
                 <NavLink to={'/register'} onClick={()=>setOpenForm(true)} className='bg-[#FF6E30] px-6 py-1 rounded-sm hover:bg-[#da6735] transition-all'>Registratsiya</NavLink>
             </div>
         </div>
