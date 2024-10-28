@@ -14,7 +14,7 @@ function Headers() {
           ))}
           <div className='bg-[#394347] shadow-[0px_0px_5px_silver] flex p-2 gap-2 items-center lg:w-[80%] rounded-lg pr-2'>
             <input type="text" placeholder='login...' className='px-3 py-2 w-full bg-transparent outline-none' />
-            <button className='bg-[#FF6E30] hover:bg-[#df6c3a] px-12 py-[10px] rounded-sm'>Login</button>
+            <button className='bg-[#FF6E30] hover:bg-[#df6c3a] md:px-12 md:py-[10px] py-2 px-6 rounded-sm'>Login</button>
           </div>
           <div className='text-3xl flex gap-8 '>
             <i className="fa-brands fa-facebook"></i>
