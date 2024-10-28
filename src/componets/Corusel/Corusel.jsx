@@ -21,13 +21,33 @@ const Corusel = () => {
     <div data-aos="zoom-in">
       <Slider {...settings}>
         <div className="">
-          <div className="px-16 mx-auto  w-full max-w-[1200px] rounded-lg overflow-hidden flex items-center justify-between">
+          <div className="px-16 mx-auto w-full max-w-[1200px] rounded-lg overflow-hidden flex max-md:block items-center justify-between">
             {/* Rasm qismi */}
+            <div className="md:w-1/2 h-[400px] flex items-center justify-center relative overflow-hidden">
+              <img src={ticher} alt="Ustoz rasmi" className="w-[80%] rounded-full absolute md:-translate-y-14 max-sm:translate-y-12 object-cover" />
+            </div>
+
+            {/* Ma'lumot qismi */}
+            <div className="md:w-1/2 max-md:text-center p-6">
+              {ticherData.map((item) => {
+                return (
+                  <div key={item.id}>
+                    <h2 className="lg:text-5xl text-4xl font-semibold text-white">{item.name}</h2>
+                    <p className="text-gray-500 mt-2">Fan : {item.fan}</p>
+                    <p className="text-gray-500 mt-2">Tajriba {item.tajriba} yil</p>
+                    <p className="text-gray-500 mt-2">{item.yutuqlar}</p>
+                  </div>
+                )
+              })}
+            </div>
+          </div>
+        </div>
+        <div>
+          <div className="px-16 mx-auto  w-full max-w-[1200px] rounded-lg overflow-hidden flex items-center justify-between">
             <div className="w-1/2 h-[400px] flex items-center justify-center relative overflow-hidden">
               <img src={ticher} alt="Ustoz rasmi" className="w-[80%] rounded-full absolute -translate-y-14 object-cover" />
             </div>
 
-            {/* Ma'lumot qismi */}
             <div className="w-1/2 p-6">
               {ticherData.map((item) => {
                 return (
@@ -44,12 +64,10 @@ const Corusel = () => {
         </div>
         <div>
           <div className="px-16 mx-auto  w-full max-w-[1200px] rounded-lg overflow-hidden flex items-center justify-between">
-            {/* Rasm qismi */}
             <div className="w-1/2 h-[400px] flex items-center justify-center relative overflow-hidden">
               <img src={ticher} alt="Ustoz rasmi" className="w-[80%] rounded-full absolute -translate-y-14 object-cover" />
             </div>
 
-            {/* Ma'lumot qismi */}
             <div className="w-1/2 p-6">
               {ticherData.map((item) => {
                 return (
@@ -66,12 +84,10 @@ const Corusel = () => {
         </div>
         <div>
           <div className="px-16 mx-auto  w-full max-w-[1200px] rounded-lg overflow-hidden flex items-center justify-between">
-            {/* Rasm qismi */}
             <div className="w-1/2 h-[400px] flex items-center justify-center relative overflow-hidden">
               <img src={ticher} alt="Ustoz rasmi" className="w-[80%] rounded-full absolute -translate-y-14 object-cover" />
             </div>
 
-            {/* Ma'lumot qismi */}
             <div className="w-1/2 p-6">
               {ticherData.map((item) => {
                 return (
@@ -86,29 +102,6 @@ const Corusel = () => {
             </div>
           </div>
         </div>
-        <div>
-          <div className="px-16 mx-auto  w-full max-w-[1200px] rounded-lg overflow-hidden flex items-center justify-between">
-            {/* Rasm qismi */}
-            <div className="w-1/2 h-[400px] flex items-center justify-center relative overflow-hidden">
-              <img src={ticher} alt="Ustoz rasmi" className="w-[80%] rounded-full absolute -translate-y-14 object-cover" />
-            </div>
-
-            {/* Ma'lumot qismi */}
-            <div className="w-1/2 p-6">
-              {ticherData.map((item) => {
-                return (
-                  <div key={item.id}>
-                    <h2 className="text-5xl font-semibold text-white">{item.name}</h2>
-                    <p className="text-gray-500 mt-2">Fan : {item.fan}</p>
-                    <p className="text-gray-500 mt-2">Tajriba {item.tajriba} yil</p>
-                    <p className="text-gray-500 mt-2">{item.yutuqlar}</p>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </div>
-        {/* O'xshash boshqa slayderlar */}
       </Slider>
     </div>
   );

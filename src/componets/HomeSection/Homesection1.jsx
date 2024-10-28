@@ -13,14 +13,14 @@ function Homesection1() {
     })
     const [count, setCount] = useState(6)
     return (
-        <div id='darslar' className='lg:p-16 overflow-hidden'>
+        <div id='darslar' className='lg:p-16 p-8 overflow-hidden'>
             <div data-aos="fade-down"
                 data-aos-duration="500" className=' text-white text-center'>
                 <h1 className='text-[48px]'>Darsliklar</h1>
                 <p className='text-[18px] relative'>Aniq reja bilan yaratilgan darsliklar</p>
             </div>
 
-            <div className=' mt-12 p-3 grid grid-cols-3 gap-8'>
+            <div className=' mt-12 p-3 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-8'>
                 {SecCarddata?.slice(0, count)?.map((item) => (
                     <div data-aos="fade-up" data-aos-delay={`${item.delay}`} key={item.id} className='bg-[#303d46] flex flex-col text-center gap-3 p-6 rounded-lg text-white relative '>
                         <div className='bg-white p-4 rounded-full w-24 mx-auto'>
