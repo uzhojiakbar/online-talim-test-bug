@@ -30,17 +30,18 @@ function Navbar() {
     const [openForm, setOpenForm] = useState(false)
     const [open, setOpen] = useState(false)
 
+
     return (
-        <div data-aos="filip-left" className='text-white bg-[#283036] flex py-4 lg:px-16 sm:px-6 px-3 justify-between items-center'>
+        <div data-aos="filip-left" className={`border-b border-slate-600 backdrop-blur-lg text-white flex top-0 left-0 z-50 fixed w-full  py-4 lg:px-16 sm:px-6 px-3 justify-between items-center`}>
             <h1 className='text-4xl'>Att</h1>
 
-            <div className='md:flex hidden gap-6'>
+            <div className='md:flex hidden gap-6 '>
                 {navData.map((item) => (
                     <div className='cursor-pointer sm:px-4 lg:px-8 py-1' key={item.id}>
                         <a href={item.manzil}>{item.name}</a>
                     </div>
                 ))}
-            </div>
+            </div>  
             <span className='md:hidden' onClick={()=>setOpen(!open)}><MdMenu size={36}/></span>
             <div className='md:flex  gap-6 hidden items-center'>
                 <NavLink to={'/login'}>Kirish</NavLink >

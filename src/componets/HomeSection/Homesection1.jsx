@@ -13,7 +13,7 @@ function Homesection1() {
     })
     const [count, setCount] = useState(6)
     return (
-        <div id='darslar' className='lg:p-16 p-8 overflow-hidden'>
+        <div id='darslar' className='lg:p-16 px-4 overflow-hidden'>
             <div data-aos="fade-down"
                 data-aos-duration="500" className=' text-white text-center'>
                 <h1 className='text-[48px]'>Darsliklar</h1>

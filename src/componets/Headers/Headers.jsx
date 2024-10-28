@@ -3,7 +3,7 @@ import headersImg from '../../assets/headersImg.png'
 import { headerData } from '../../utils/HeaderData'
 function Headers() {
   return (
-    <div className='text-white'>
+    <div className='text-white pt-8'>
       <div className='lg:p-16 p-8 grid md:grid-cols-2 sm:grid-cols-1 lg:gap-6 justify-center '>
         <div  data-aos="zoom-in-up" className='space-y-8 font-[Poppins] mt-8 flex h-[50%] flex-col justify-between'>
           {headerData?.map((item) => (
