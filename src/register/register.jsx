@@ -19,30 +19,31 @@ function Register() {
         setFormdata({ ...formData, [e.target.name]: e.target.value })
     }
     const onSumbit = () => {
-        fetch('http://localhost:5000/api/auth/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                ism: 'Sayfiddin',
-                familiya: 'Rsuljonov',
-                username: 'Sayfiddin',
-                parol: '5555',
-                tasdiqlash: '5555',
-                gurux: '36-ATT-23',
-                role: 'user'
-            }),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                localStorage.setItem("login",true)
-                localStorage.setItem("token",1)
-                
-                nav("/profile")
-                console.log(data)
-            })
-            .catch((error) => console.error('Error:', error));
+        // fetch('http://localhost:5000/api/auth/register', {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json',
+        //     },
+        //     body: JSON.stringify({
+        //         ism: 'Sayfiddin',
+        //         familiya: 'Rsuljonov',
+        //         username: 'Sayfiddin',
+        //         parol: '5555',
+        //         tasdiqlash: '5555',
+        //         gurux: '36-ATT-23',
+        //         role: 'user'
+        //     }),
+        // })
+        //     .then((response) => response.json())
+        //     .then((data) => {
+
+        //     })
+        //     .catch((error) => console.error('Error:', error));
+        localStorage.setItem("login", true)
+        localStorage.setItem("token", 1)
+
+        nav("/profile")
+        console.log(data)
     };
 
 
