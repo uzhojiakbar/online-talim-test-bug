@@ -1,10 +1,15 @@
-import React, { useState} from 'react'
+import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { delCookie } from '../../../Hooks/getCooce';
 
 function ProfileNavbar() {
     const [open, setOpen] = useState(false)
-    const delestate = ()=>{
-        localStorage.clear('token')
-        localStorage.clear('login')
+
+    const nav = useNavigate();
+    const delestate = () => {
+        delCookie('token')
+        nav('/')
+        document.location.reload()
     }
     return (
         <div className=' bg-slate-800 border-b border-slate-500 py-3 px-12 text-white flex justify-between items-center fixed w-full top-0 z-50'>
