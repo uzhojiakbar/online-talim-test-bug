@@ -4,7 +4,7 @@ import { lessonData } from './lessonData'
 import { useRes } from '../../../Context/useContext'
 
 import { NavLink, useParams } from 'react-router-dom'
-import Lessonid from '../../../../pages/Lessonid'
+import Lessonid from './Lessonid'
 
 function lesson() {
   const { res, setRes } = useRes()
@@ -21,7 +21,7 @@ function lesson() {
             </div>
           ))}
         </div>
-        <div className='w-[100%]  h-screen overflow-auto p-3 pt-20 space-y-4'>
+        <div className='w-[100%] h-screen overflow-auto p-3 pt-20 space-y-4'>
           <Lessonid />
         </div>
       </div>

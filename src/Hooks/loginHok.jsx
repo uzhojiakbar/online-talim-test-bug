@@ -6,7 +6,7 @@ const {notify} = getNotify();
 
 export const loginHok = (onSuccess, onError) => {
   return useMutation({
-    mutationFn: (data) => instance.post("/api/auth/login", data),
+    mutationFn: (data) => instance.post("api/auth/login", data),
     onSuccess: (data) => {
       console.log(data)
       setCookie('token',data?.data.token)

@@ -20,6 +20,8 @@ function Login() {
         },
 
         (error) => {
+            console.log(error);
+            
             if (error?.response?.data?.error === "Foydalanuvchi topilmadi") {
                 notify('err', "Hisob topilmadi")
             }

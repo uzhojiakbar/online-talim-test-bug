@@ -5,7 +5,7 @@ export const lessonData = [
         title: "1-Dars",
         lessonName: 'Ip manzillar va dns serverlar bilan ishlash',
         lessonDesk: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, id ea. Minima, dolorem exercitationem porro quas ullam id, rerum ipsa perspiciatis ad qui officiis voluptatem tempore laborum non et maiores?",
-        lessonLink: <iframe width="560" height="315" src="https://www.youtube.com/embed/TicGJQqrq2M?si=GUKDWVt6TfHKoYtv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        lessonLink: <iframe width="560" height="315" src="https://www.youtube.com/embed/TicGJQqrq2M?si=GUKDWVt6TfHKoYtv" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ></iframe>
     },
     {
         id: 2,

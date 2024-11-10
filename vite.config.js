@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'http://localhost:5000', // Proksi sifatida ishlatiladigan server manzili
+        target: 'https://onlinetalim-backend.onrender.com/', // Proksi sifatida ishlatiladigan server manzili
         changeOrigin: true, // Serverga kelayotgan so'rovni o'zgartirish
         secure: false, // Agar HTTPS bo'lsa, buni true qilib qo'yishingiz mumkin
         // pathRewrite: { '^/api': '' }, // Agar yo'lni o'zgartirmoqchi bo'lsangiz

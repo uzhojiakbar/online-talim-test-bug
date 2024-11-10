@@ -27,7 +27,7 @@ const MonthlyUserStatsChart = ({ monthlyStats }) => {
   return (
     <div className="bg-white p-6 m-4 rounded-lg shadow-md">
       <h3 className="text-2xl font-semibold mb-4">Har oy uchun foydalanuvchilar soni</h3>
-      <Bar data={chartData} />
+      <Bar width={400} height={200} data={chartData} />
     </div>
   );
 };
