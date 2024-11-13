@@ -1,6 +1,7 @@
 import React from 'react'
 import headersImg from '../../assets/headersImg.png'
 import { headerData } from '../../utils/HeaderData'
+import { Rate } from 'antd';
 function Headers() {
   return (
     <div className='text-white pt-8'>

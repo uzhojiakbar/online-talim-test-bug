@@ -16,13 +16,13 @@ const AdminPage = () => {
             role: "users"
         },
         {
-            id: 1,
+            id: 2,
             name: "Rahmadjon Abdullayev",
             email: "Rahmadjonabdullaye@gmail.com",
             role: "admin"
         },
         {
-            id: 1,
+            id: 3,
             name: "Jamshidbek Ismonaliyev",
             email: "jamshidbek@gmail.com",
             role: "users"
@@ -57,30 +57,29 @@ const AdminPage = () => {
     return (
         <div className="bg-slate-100 ">
             <AdminNav />
-            <div class="flex-1 p-6 pt-28">
+            <div className="flex-1 p-6 pt-28">
                 <Addlesson />
-
                 <div id="manage-users ">
-                    <h3 class="text-2xl font-semibold mb-4">Foydalanuvchilarni boshqarish</h3>
+                    <h3 className="text-2xl font-semibold mb-4">Foydalanuvchilarni boshqarish</h3>
                     <div className=" bg-white py-6 border-gray-300 rounded-lg shadow-lg">
                         <table className="min-w-full"  >
                             <thead>
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Ism</th>
-                                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Email</th>
-                                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Ro'l</th>
-                                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">o'rchirish</th>
-                                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-500">Admin</th>
+                                    <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Ism</th>
+                                    <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Email</th>
+                                    <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Ro'l</th>
+                                    <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">o'rchirish</th>
+                                    <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Admin</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {users.map((i) => (
-                                    <tr className="">
-                                        <td class="px-6 py-4 text-sm text-gray-900 ">{i.name}</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">{i.email}</td>
-                                        <td class="px-6 py-4 text-sm text-gray-900">{i.role}</td>
-                                        <td class="px-6 py-4 text-sm text-red-600 hover:text-red-800 cursor-pointer">O'chirish</td>
-                                        <td class="px-6 py-4 text-sm text-blue-600 hover:text-blue-800 cursor-pointer">
+                                    <tr key={i.id} className="">
+                                        <td className="px-6 py-4 text-sm text-gray-900 ">{i.name}</td>
+                                        <td className="px-6 py-4 text-sm text-gray-900">{i.email}</td>
+                                        <td className="px-6 py-4 text-sm text-gray-900">{i.role}</td>
+                                        <td className="px-6 py-4 text-sm text-red-600 hover:text-red-800 cursor-pointer">O'chirish</td>
+                                        <td className="px-6 py-4 text-sm text-blue-600 hover:text-blue-800 cursor-pointer">
                                             <select name="" id="">
                                                 <option value="">admin</option>
                                                 <option value="">users</option>

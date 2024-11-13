@@ -15,7 +15,7 @@ function lesson() {
       <ProfileNavbar />
       <div className=' flex gap-6 text-white bg-slate-800'>
         <div className='w-[20%] border-r border-slate-600 p-3 h-screen  overflow-auto pt-20'>
-          {res.map((v) => (
+          {res?.map((v) => (
             <div key={v.id}>
               <NavLink to={`/profile/lesson/${v?.id - 1 || 0}`} className={`cursor-pointer hover:bg-slate-700 mt-2 py-1 px-3 rounded-sm block  text-xl `}>{v.title} </NavLink>
             </div>

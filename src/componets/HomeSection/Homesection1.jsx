@@ -4,11 +4,11 @@ import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import att_logo from '../../assets/att_logo.png'
-import { headerData } from '../../utils/HeaderData';
+import { Rate } from 'antd';
 function Homesection1() {
     useEffect(() => {
         AOS.init({
-            duration: 1000, // animatsiya davomiyligi (milisekundlarda)
+            duration: 1000, 
         });
     })
     const [count, setCount] = useState(6)
@@ -32,9 +32,10 @@ function Homesection1() {
                         <div className='flex gap-16 mt-6 items-center  justify-between  '>
                             <p className='text-[#8ca5bb] text-[14px] font-[500]'>Dars soni {item.dasrs}</p>
                             <div>
-                                <span className='text-orange-400'><i className="fa-solid fa-star"></i></span>
-                                <span className='text-orange-400'><i className="fa-solid fa-star"></i></span>
-                                <span className='text-orange-400'><i className="fa-solid fa-star"></i></span>
+                                <Rate className=''/>
+                                {/* <span className='text-orange-400'><i className="fa-solid fa-star"></i></span> */}
+                                {/* <span className='text-orange-400'><i className="fa-solid fa-star"></i></span> */}
+                                {/* <span className='text-orange-400'><i className="fa-solid fa-star"></i></span> */}
                             </div>
                         </div>
                     </div>
