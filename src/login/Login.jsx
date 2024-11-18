@@ -16,7 +16,7 @@ function Login() {
             else if(!admin) {
                 nav('/profile')
             }
-            // document.location.reload()
+            document.location.reload()
         },
 
         (error) => {
