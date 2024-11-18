@@ -65,15 +65,7 @@ function Addlesson() {
                                 </div>
                             </NavLink>
                             <div className="go-corner" href="#">
-                                <div onClick={isModal} className="go-arrow">
-                                    <i class="fas fa-ellipsis-v"></i>
-                                </div>
                             </div>
-                        <Modal footer title="Basic Modal" open={isopen} onOk={handleOk} onCancel={Cancel}>
-                            <div>
-                                <h1>{i.desc} </h1>
-                            </div>
-                        </Modal>
                         </a>
                     </div>
                 ))}
