@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getCookie } from './getCooce'
 export const instance = axios.create({
-    baseUrl: "https://onlinetalim-backend.onrender.com/"
+    baseUrl: "http://localhost:5000"
 })
 
 

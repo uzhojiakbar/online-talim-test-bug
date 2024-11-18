@@ -52,15 +52,15 @@ function Login() {
         <div className='w-[100%] h-[100vh] flex justify-center items-center'>
             <form onSubmit={onsumbit} className=' py-12 rgb lg:w-[40%] md:w-[60%]  w-full sm:mx-6 mx-4 max-sm:px-6 text-white p-8  rounded-lg  gap-6 relative animate-border-draw'>
                 <NavLink to={'/'} className='text-2xl absolute top-6 '><i class="fa-solid fa-arrow-left"></i></NavLink>
-                <h1 className='text-2xl text-center font-semibold'>Ro'yhatdan O'tish</h1>
+                <h1 className='text-2xl text-center font-semibold'>Tizimga kirish O'tish</h1>
                 <div className='flex flex-col gap-6 '>
                     <label>
-                        <span>username</span><br />
-                        <input onChange={onchange} name='username' type="text" className='mt-1 bg-white text-slate-800 w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='username' />
+                        <span>Foydalanuvchi nomi</span><br />
+                        <input onChange={onchange} name='username' type="text" className='mt-1 bg-white text-slate-800 w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Foydalanuvchi nomi' />
                     </label>
                     <label>
-                        <span>passowrd</span><br />
-                        <input onChange={onchange} name='password' type="text" className='mt-1 bg-white text-slate-800 w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='password' />
+                        <span>parol</span><br />
+                        <input onChange={onchange} name='password' type="text" className='mt-1 bg-white text-slate-800 w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='parolni kiriting' />
                     </label>
 
                 </div>

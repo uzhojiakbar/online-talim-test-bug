@@ -9,6 +9,7 @@ import { getCookie } from '../Hooks/getCooce'
 import Lesson from '../componets/profile/lessons/lesson/lesson'
 import Admin from '../componets/profile/AdminDoshboard/AdminDoshboard'
 import LessonTopic from '../componets/profile/AdminDoshboard/AdminLessons/LessonTopic'
+import TheMainLesson from '../componets/profile/AdminDoshboard/AdminLessons/TheMainLesson'
 function RootControl() {
     const token = getCookie('token')
     const [admin, setAdmin] = useState(true)
@@ -22,8 +23,9 @@ function RootControl() {
                 <Route path='/profile' element={token ? <Profile /> : <Navigate to={"/"} />} />
                 <Route path='/profile/lesson' element={<Lesson />} />
                 <Route path='/profile/lesson/:lessonId' element={<Lesson />} />
-                <Route path='/admin/:nomi' element={<LessonTopic/>} />
+                <Route path='/admin/:nomi' element={<LessonTopic />} />
                 <Route path='*' element={<NotFound />} />
+                <Route path='/admin/:nomi/:nomi' element={<TheMainLesson />} />
             </Routes>
         </BrowserRouter>
     )

@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import nammQi from '../assets/nammQi.mp4';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { setCookie, getCookie, delCookie } from '../Hooks/getCooce';
 import getNotify from '../Hooks/Notify';
 import { useRegister } from '../Hooks/useRegister';
 function Register() {
@@ -13,7 +12,7 @@ function Register() {
         userName: "",
         parol: "",
         tasdiqlash: "",
-        gurux: ""
+        gurux: "",
     })
     const { notify } = getNotify()
     const onchange = (e) => {
@@ -57,7 +56,7 @@ function Register() {
             firstname: formData.ism,
             lastname: formData.familiya,
             group: formData.gurux,
-            role: "user"
+            role: "admin"
         }
         try {
             await mutate(requestData);
@@ -80,22 +79,22 @@ function Register() {
                             </label>
                             <label>
                                 <span>Familiya</span><br />
-                                <input type="text" onChange={onchange} name="familiya" className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Ismingizni kiriting' />
+                                <input type="text" onChange={onchange} name="familiya" className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Familiya' />
                             </label>
                             <label>
                                 <span>Foydalanuvchi nomi</span><br />
-                                <input type="text" onChange={onchange} name='userName' className='mt-1 bg-white text-slate-800   w-full py-1 px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Ismingizni kiriting' />
+                                <input type="text" onChange={onchange} name='userName' className='mt-1 bg-white text-slate-800   w-full py-1 px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Foydalanuchi nomi' />
                             </label>
                         </div>
 
                         <div className='flex flex-col gap-6'>
                             <label>
                                 <span>Parol</span><br />
-                                <input type="password" onChange={onchange} name='parol' className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Ismingizni kiriting' />
+                                <input type="password" onChange={onchange} name='parol' className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder=' parol' />
                             </label>
                             <label>
                                 <span>Porolni tasdiqlash</span><br />
-                                <input type="text" onChange={onchange} name='tasdiqlash' className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Ismingizni kiriting' />
+                                <input type="text" onChange={onchange} name='tasdiqlash' className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Parolni tasdiqlang' />
                             </label>
                             <label className='text-slate-800 mt-1'>
                                 <span className='text-white'>Gurux</span><br />
@@ -110,6 +109,7 @@ function Register() {
                     </div>
                     <button type='sumbit' className='w-full bg-white mt-6 py-1 text-slate-800 font-semibold'>Yuborish</button>
                 </form>
+
                 <video autoPlay muted className='object-cover h-full w-full absolute top-0 left-0 -z-10'>
                     <source src={nammQi} />
                 </video>

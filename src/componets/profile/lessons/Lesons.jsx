@@ -1,12 +1,9 @@
 import React from 'react'
-import { LessonData } from '../../../utils/LesnosData'
 import { NavLink } from 'react-router-dom'
-import { useRes } from '../../Context/useContext'
 import { useFan } from '../../../Hooks/useFan'
 
 function Leson() {
-    const { fan, setFan } = useRes()
-    const { data } = useFan();
+    const { fan, setFan } = useFan();
     return (
         <div className=' px-12  mt-6 grid lg:grid-cols-3 gap-8 sm:grid-cols-2 grid-cols-1'>
             {fan?.map((v) => (

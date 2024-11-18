@@ -3,11 +3,10 @@ import AdminNav from "./AdminNav";
 import MonthlyUserStatsChart from "./Chart";
 import { lessonData } from "../lessons/lesson/lessonData";
 import { NavLink, useNavigate } from "react-router-dom";
-import { useRes } from "../../Context/useContext";
 import Addlesson from "./AdminLessons/Addlesson";
+import { useFan } from "../../../Hooks/useFan";
 const AdminPage = () => {
-    const { res, setRes } = useRes();
-    const [iframe, setIframe] = useState("")
+
     const [users, setUsers] = useState([
         {
             id: 1,
@@ -36,24 +35,8 @@ const AdminPage = () => {
         { month: '2024-05', userCount: 130 },
         { month: '2024-06', userCount: 50 },
     ];
-    const [data, setData] = useState({
-        id: res.length + 1,
-        lessonName: "",
-        lessonLink: "",
-        lessonDesk: "",
-        title: `${res.length + 1}-dars`
-    })
+    const { fan ,loading} = useFan()
 
-    const onchange = (e) => {
-        setData({ ...data, [e.target.name]: e.target.value })
-    }
-    const nav = useNavigate()
-    const onsumbit = (e) => {
-        e.preventDefault();
-        const updatedLessons = [...res, data]
-        setRes(updatedLessons)
-        nav('/profile/lesson')
-    }
     return (
         <div className="bg-slate-100 ">
             <AdminNav />
@@ -94,7 +77,6 @@ const AdminPage = () => {
             </div>
             <MonthlyUserStatsChart monthlyStats={monthlyStats} />
         </div>
-
     );
 };
 
