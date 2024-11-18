@@ -5,7 +5,7 @@ import Register from "../register/register";
 import Login from "../login/Login";
 import NotFound from "../componets/NootFound";
 import Profile from "../componets/profile/Profile";
-import Lesson from "../componets/profile/lessons/lesson/lesson";
+import Leson from "../componets/profile/lessons/Lesons";
 import Admin from "../componets/profile/AdminDoshboard/AdminDoshboard";
 import LessonTopic from "../componets/profile/AdminDoshboard/AdminLessons/LessonTopic";
 import { getCookie } from "../Hooks/getCooce";
@@ -77,7 +77,7 @@ function RootControl() {
                     path="/profile/lesson"
                     element={
                         <ProtectedRoute token={token} role={role} allowedRoles={["user"]}>
-                            <Lesson />
+                            <Leson />
                         </ProtectedRoute>
                     }
                 />
@@ -85,7 +85,7 @@ function RootControl() {
                     path="/profile/lesson/:lessonId"
                     element={
                         <ProtectedRoute token={token} role={role} allowedRoles={["user"]}>
-                            <Lesson />
+                            <Leson />
                         </ProtectedRoute>
                     }
                 />
