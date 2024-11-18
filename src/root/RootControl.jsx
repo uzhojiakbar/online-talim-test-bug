@@ -9,7 +9,7 @@ import { getCookie } from '../Hooks/getCooce'
 import Lesson from '../componets/profile/lessons/lesson/lesson'
 import Admin from '../componets/profile/AdminDoshboard/AdminDoshboard'
 import LessonTopic from '../componets/profile/AdminDoshboard/AdminLessons/LessonTopic'
-import TheMainLesson from '../componets/profile/AdminDoshboard/AdminLessons/TheMainLesson'
+// import TheMainLesson from '../componets/profile/AdminDoshboard/AdminLessons/TheMainLesson'
 function RootControl() {
     const token = getCookie('token')
     const [admin, setAdmin] = useState(true)
