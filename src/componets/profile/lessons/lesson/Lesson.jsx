@@ -1,13 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import ProfileNavbar from '../../Navbar/ProfileNavbar'
-import { lessonData } from './lessonData'
-
-import { NavLink, useParams } from 'react-router-dom'
-import Lessonid from './Lessonid'
-import { useFan } from '../../../../Hooks/useFan'
 
 function lesson() {
-  const [selected, setSelected] = useState(1)
   return (
     <div>
       <ProfileNavbar />
