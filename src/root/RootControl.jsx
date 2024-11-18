@@ -25,7 +25,7 @@ function RootControl() {
                 <Route path='/profile/lesson/:lessonId' element={<Lesson />} />
                 <Route path='/admin/:nomi' element={<LessonTopic />} />
                 <Route path='*' element={<NotFound />} />
-                <Route path='/admin/:nomi/:nomi' element={<TheMainLesson />} />
+                {/* <Route path='/admin/:nomi/:nomi' element={<TheMainLesson />} /> */}
             </Routes>
         </BrowserRouter>
     )
