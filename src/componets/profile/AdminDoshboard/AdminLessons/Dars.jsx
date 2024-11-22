@@ -21,6 +21,7 @@ const Dars = () => {
     useEffect(() => {
         mavZuMalumotlari();
     }, [darsnomi]);
+
     return (
         <div>
             {load && (

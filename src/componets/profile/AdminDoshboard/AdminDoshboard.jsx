@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import AdminNav from "./AdminNav";
 import MonthlyUserStatsChart from "./Chart";
-import { lessonData } from "../lessons/lesson/lessonData";
-import { NavLink, useNavigate } from "react-router-dom";
 import Addlesson from "./AdminLessons/Addlesson";
-import { useFan } from "../../../Hooks/useFan";
 const AdminPage = () => {
 
     const [users, setUsers] = useState([
@@ -35,7 +32,6 @@ const AdminPage = () => {
         { month: '2024-05', userCount: 130 },
         { month: '2024-06', userCount: 50 },
     ];
-    const { fan ,loading} = useFan()
 
     return (
         <div className="bg-slate-100 ">

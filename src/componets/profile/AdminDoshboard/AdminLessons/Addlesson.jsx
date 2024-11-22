@@ -8,27 +8,16 @@ import AddFan from '../../../../Hooks/AddFan';
 
 function Addlesson() {
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [isopen, setOpen] = useState(false);
     const [subjectName, setSubjectName] = useState("");
     const [description, setDescription] = useState("");
 
     const showModal = () => {
         setIsModalOpen(true);
     };
-
-    const isModal = () => {
-        setOpen(true);
-    };
-    const handleOk = () => {
-        setOpen(false);
-    };
-
     const handleCancel = () => {
         setIsModalOpen(false);
     };
-    const Cancel = () => {
-        setOpen(false);
-    };
+
     const { addFanFunction } = AddFan();
     const handleFormSubmit = (e) => {
         e.preventDefault();

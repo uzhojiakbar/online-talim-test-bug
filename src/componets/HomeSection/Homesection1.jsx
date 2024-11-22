@@ -5,6 +5,8 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import att_logo from '../../assets/att_logo.png'
 import { Rate } from 'antd';
+import useFan from '../../Hooks/useFan';
+import { NavLink } from 'react-router-dom';
 function Homesection1() {
     useEffect(() => {
         AOS.init({
@@ -12,6 +14,8 @@ function Homesection1() {
         });
     })
     const [count, setCount] = useState(6)
+    const {fan} = useFan();
+
     return (
         <div id='darslar' className='lg:p-16 px-4 overflow-hidden'>
             <div data-aos="fade-down"
@@ -19,23 +23,19 @@ function Homesection1() {
                 <h1 className='text-[48px]'>Darsliklar</h1>
                 <p className='text-[18px] relative'>Aniq reja bilan yaratilgan darsliklar</p>
             </div>
-
             <div className=' mt-12 p-3 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-8'>
-                {SecCarddata?.slice(0, count)?.map((item) => (
-                    <div data-aos="fade-up" data-aos-delay={`${item.delay}`} key={item.id} className='bg-[#303d46] flex flex-col text-center gap-3 p-6 rounded-lg text-white relative '>
+                {fan?.slice(0, count)?.map((item) => (
+                    <div data-aos="fade-up" data-aos-delay={`${item.delay}`} key={item.id} className='bg-[#303d46] flex flex-col justify-between text-center gap-3 p-6 rounded-lg text-white relative '>
                         <div className='bg-white p-4 rounded-full w-24 mx-auto'>
                             <img src={att_logo} alt="" className='' />
                         </div>
-                        <h1 className='text-[20px] font-bold text-white'>{item.title}</h1>
-                        <p className='text-[15px] text-[#8ca5bb]'>{item.decs}</p>
-                        <button className='bg-[#FF6E30] hover:bg-[#df6c3a] w-[70%] mx-auto py-2 rounded-full text-[14px] font-[500]'>{item.subtile}</button>
+                        <h1 className='text-[20px] font-bold text-white'>{item.nomi}</h1>
+                        <p className='text-[15px] text-[#8ca5bb]'>{item.desc}</p>
+                        <NavLink to={`/profile/${item.nomi}`} className='bg-[#FF6E30] hover:bg-[#df6c3a] w-[70%] mx-auto py-2 rounded-full text-[14px] font-[500]'>Fanga o'tish</NavLink>
                         <div className='flex gap-16 mt-6 items-center  justify-between  '>
-                            <p className='text-[#8ca5bb] text-[14px] font-[500]'>Dars soni {item.dasrs}</p>
+                            <p className='text-[#8ca5bb] text-[14px] font-[500]'>Dars soni {item.views}</p>
                             <div>
                                 <Rate className=''/>
-                                {/* <span className='text-orange-400'><i className="fa-solid fa-star"></i></span> */}
-                                {/* <span className='text-orange-400'><i className="fa-solid fa-star"></i></span> */}
-                                {/* <span className='text-orange-400'><i className="fa-solid fa-star"></i></span> */}
                             </div>
                         </div>
                     </div>

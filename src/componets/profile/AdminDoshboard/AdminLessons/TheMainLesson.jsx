@@ -19,14 +19,37 @@ function TheMainLesson() {
     const onchange = (e) => {
         setNwelesson({ ...newLesson, [e.target.name]: e.target.value })
     }
-    const { nomi } = useParams()    
+    const { nomi } = useParams()
     return (
         <div className='bg-slate-100 w-[100%] pt-24 p-8 overflow-auto pl-[25%]'>
             <h1 className='text-3xl mb-4'>{nomi}</h1>
-            <button onClick={showModal} class="icon-btn add-btn mb-6">
-                <div class="add-icon"></div>
-                <div class="btn-txt">Yangi dars</div>
-            </button>
+            <div className='mb-6 bg-white p-2 rounded-[8px] flex lg:w-[40%] w-[100%] sm:w-[60%] justify-around' >
+                <div>
+                    <button onClick={showModal} class="icon-btn add-btn  shadow-md">
+                        <div className="add-icon"></div>
+                        <div className="btn-txt">Yangi dars</div>
+                    </button>
+                </div>
+                <div>
+
+                    <button class="btn">
+                        <p class="paragraph"> O'chirish </p>
+                        <span className="icon-wrapper">
+                            <span className='text-red-500'><i className="fa-solid fa-trash"></i></span>
+                        </span>
+                    </button>
+                </div>
+                <div>
+
+                    <button class="btn">
+                        <p class="paragraph"> yangilash </p>
+                        <span className="icon-wrapper">
+                            <span className='text-green-500'><i class="fa-solid fa-pen"></i></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
             <Modal footer={[
                 <Button onClick={() => AddNewMavzu(newLesson, nomi)} type="primary" className='mt-6 py-4' block>
                     Yuborish

@@ -5,20 +5,17 @@ import Register from "../register/register";
 import Login from "../login/Login";
 import NotFound from "../componets/NootFound";
 import Profile from "../componets/profile/Profile";
-import Leson from "../componets/profile/lessons/Lesons";
 import Admin from "../componets/profile/AdminDoshboard/AdminDoshboard";
 import LessonTopic from "../componets/profile/AdminDoshboard/AdminLessons/LessonTopic";
 import { getCookie } from "../Hooks/getCooce";
+import DarsUser from "../componets/profile/lessons/lesson/DarsUser";
 
-// Himoyalangan marshrut komponenti
 const ProtectedRoute = ({ children, allowedRoles, token, role }) => {
     if (!token) {
-        // Agar token mavjud bo'lmasa, foydalanuvchini login sahifasiga yo'naltiradi
         return <Navigate to="/login" />;
     }
 
     if (!allowedRoles.includes(role)) {
-        // Agar rol mos kelmasa, foydalanuvchini asosiy sahifaga yo'naltiradi
         return <Navigate to="/" />;
     }
 
@@ -26,9 +23,8 @@ const ProtectedRoute = ({ children, allowedRoles, token, role }) => {
 };
 
 function RootControl() {
-    const token = getCookie("token"); // Cookie'dan tokenni o'qiymiz
-    const role = getCookie("role"); // Cookie'dan rolni o'qiymiz
-
+    const token = getCookie("token");
+    const role = getCookie("role"); 
     return (
         <BrowserRouter>
             <Routes>
@@ -70,27 +66,20 @@ function RootControl() {
                     element={
                         <ProtectedRoute token={token} role={role} allowedRoles={["user"]}>
                             <Profile />
-                        </ProtectedRoute>
-                    }
-                />
-                <Route
+                        </ProtectedRoute>} />
+
+                {/* <Route
                     path="/profile/lesson"
                     element={
                         <ProtectedRoute token={token} role={role} allowedRoles={["user"]}>
                             <Leson />
-                        </ProtectedRoute>
-                    }
-                />
-                <Route
-                    path="/profile/lesson/:lessonId"
+                        </ProtectedRoute>} /> */}
+                <Route path="/profile/:nomi"
                     element={
                         <ProtectedRoute token={token} role={role} allowedRoles={["user"]}>
-                            <Leson />
-                        </ProtectedRoute>
-                    }
-                />
+                            <DarsUser/>
+                        </ProtectedRoute>} />
 
-                {/* Not Found sahifasi */}
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
