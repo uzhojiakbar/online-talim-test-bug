@@ -33,6 +33,7 @@ function DarsUser() {
       <ProfileNavbar />
       <h1  onClick={() => setSidebarOpen(!sidebarOpen)}
       className="text-2xl text-white absolute z-[1000] md:hidden top-5 left-4 cursor-pointer">{sidebarOpen ? "✖" : "☰"} </h1>
+     
       <aside
         className={`fixed top-[73px] left-0 h-screen bg-gradient-to-b from-slate-700 to-gray-800 shadow-lg border-r border-gray-600 p-4  overflow-y-auto z-50 transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
           } md:translate-x-0 w-[80%] md:w-[24%]`}>

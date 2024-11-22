@@ -41,7 +41,7 @@ const Dars = () => {
                 <div className="bg-white p-4 rounded-lg space-y-2">
                     <h1 className="text-xl">{data.name}</h1>
                     <h1>{data.desc}</h1>
-                    <div
+                    <div className=""
                         id="embedContainer"
                         dangerouslySetInnerHTML={{ __html: data.embed }}
                     />

@@ -45,7 +45,7 @@ function Register() {
             notify("err", "Parollar mos emas")
             return
         }
-        if (formData.parol.length < 1) {
+        if (formData.parol.length < 6) {
             console.log('minimal parol uzunligi 6 belgidan iborat bolishi kerak')
             notify('err', 'parol minimum 6 belgidan kam bolmasligi kerak')
             return
@@ -56,7 +56,7 @@ function Register() {
             firstname: formData.ism,
             lastname: formData.familiya,
             group: formData.gurux,
-            role: "admin"
+            role: "user"
         }
         try {
             await mutate(requestData);

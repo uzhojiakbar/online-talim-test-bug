@@ -18,18 +18,17 @@ const ProtectedRoute = ({ children, allowedRoles, token, role }) => {
     if (!allowedRoles.includes(role)) {
         return <Navigate to="/" />;
     }
-
     return children;
 };
 
 function RootControl() {
     const token = getCookie("token");
-    const role = getCookie("role"); 
+    const role = getCookie("role");
     return (
         <BrowserRouter>
             <Routes>
                 {/* Asosiy sahifa */}
-                <Route path="/" element={token ? <Navigate to="/profile" /> : <Home />} />
+                <Route path="/" element={token && role == "user" ? <Navigate to="/profile" /> : <Home />} />
                 {/* Kirish va ro‘yxatdan o‘tish sahifalari */}
                 <Route path="/register" element={<Register />} />
                 <Route path="/login" element={<Login />} />
@@ -43,6 +42,7 @@ function RootControl() {
                         </ProtectedRoute>
                     }
                 />
+                
                 <Route
                     path="/admin/:nomi"
                     element={
@@ -77,7 +77,7 @@ function RootControl() {
                 <Route path="/profile/:nomi"
                     element={
                         <ProtectedRoute token={token} role={role} allowedRoles={["user"]}>
-                            <DarsUser/>
+                            <DarsUser />
                         </ProtectedRoute>} />
 
                 <Route path="*" element={<NotFound />} />
