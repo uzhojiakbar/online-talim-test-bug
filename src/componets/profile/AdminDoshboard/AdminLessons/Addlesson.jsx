@@ -7,6 +7,7 @@ import useFan from '../../../../Hooks/useFan';
 import AddFan from '../../../../Hooks/AddFan';
 
 function Addlesson() {
+    const { fan, loading } = useFan();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [subjectName, setSubjectName] = useState("");
     const [description, setDescription] = useState("");
@@ -24,7 +25,6 @@ function Addlesson() {
         addFanFunction(subjectName, description);
     };
 
-    const { fan, loading } = useFan()
 
     return (
         <div>

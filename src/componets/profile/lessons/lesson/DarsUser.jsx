@@ -10,7 +10,7 @@ function DarsUser() {
   const { fanMavzulari, addTopics } = useAddTopic();
   const [load, setLoad] = useState(false);
   const [data, setData] = useState([]);
-  const [sidebarOpen, setSidebarOpen] = useState(false); // Sidebar uchun holat
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     addTopics(nomi);
@@ -27,13 +27,15 @@ function DarsUser() {
       setLoad(false);
     }
   };
-
+  const closeModal = (e) => {
+    if (e.target.className == "absolute w-full h-full bg-black/10 backdrop-blur-sm top-0 left-0 z-50") setSidebarOpen(false)
+  }
   return (
     <div className="min-h-screen relative bg-gradient-to-br from-gray-900 via-slate-800 to-gray-700 text-white">
       <ProfileNavbar />
-      <h1  onClick={() => setSidebarOpen(!sidebarOpen)}
-      className="text-2xl text-white absolute z-[1000] md:hidden top-5 left-4 cursor-pointer">{sidebarOpen ? "✖" : "☰"} </h1>
-     
+      <h1 onClick={() => setSidebarOpen(!sidebarOpen)}
+        className="text-2xl text-white absolute z-[1000] md:hidden top-5 left-4 cursor-pointer">{sidebarOpen ? "✖" : "☰"} </h1>
+      {sidebarOpen && <div onClick={closeModal} className="absolute w-full h-full bg-black/10 backdrop-blur-sm top-0 left-0 z-50"></div>}
       <aside
         className={`fixed top-[73px] left-0 h-screen bg-gradient-to-b from-slate-700 to-gray-800 shadow-lg border-r border-gray-600 p-4  overflow-y-auto z-50 transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
           } md:translate-x-0 w-[80%] md:w-[24%]`}>
@@ -42,8 +44,8 @@ function DarsUser() {
         </h2>
         <div className="space-y-4">
           {fanMavzulari?.map((item) => (
-            <NavLink
-              onClick={() => mavZuMalumotlari(item.nomi)}
+            <NavLink 
+              onClick={() => { mavZuMalumotlari(item.nomi),setSidebarOpen(!sidebarOpen)}}
               key={item.id}
               to="#"
               className="block bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white p-3 rounded-lg transition duration-300 shadow-sm">
@@ -52,7 +54,7 @@ function DarsUser() {
           ))}
         </div>
       </aside>
-    
+
 
 
       {/* Asosiy kontent */}

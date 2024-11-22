@@ -2,7 +2,7 @@ import React from 'react'
 
 function AdminNav() {
     return (
-        <div className='bg-white z-[1000] py-2 px-8 w-full flex realtive justify-between fixed items-center border-b'>
+        <div className='max-md:pl-16 bg-white z-[2000] py-2 px-8 w-full flex realtive justify-between fixed items-center border-b'>
             <h1 className="text sm:text-2xl text-xl font-bold">Admin panel</h1>
             <div className='flex gap-2 sm:text-2xl text-xl font-bold text-slate-800 items-center'>
                 <p >Kamoldin</p>

@@ -12,7 +12,7 @@ function ProfileNavbar() {
         document.location.reload()
     }
     return (
-        <div className=' bg-slate-800 border-b border-slate-500 py-3 px-12 text-white flex justify-between items-center fixed w-full top-0 z-50'>
+        <div className=' bg-slate-800 border-b border-slate-500 py-3 px-12 text-white flex justify-between items-center fixed w-full top-0 z-[1000]'>
             <h1 className='font-semibold text-xl max-md:ml-12'>Onlie dasrlik</h1>
             <div className=' bg-slate-400 w-12 h-12 text-2xl flex items-center justify-center rounded-full relative cursor-pointer' >
                 <span onClick={() => setOpen(!open)}><i className="fa-solid fa-user"></i></span>

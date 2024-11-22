@@ -4,26 +4,26 @@ import MonthlyUserStatsChart from "./Chart";
 import Addlesson from "./AdminLessons/Addlesson";
 const AdminPage = () => {
 
-    const [users, setUsers] = useState([
-        {
-            id: 1,
-            name: "Murodullayev Xojakbar",
-            email: "Hojiakbar@gmail.com",
-            role: "users"
-        },
-        {
-            id: 2,
-            name: "Rahmadjon Abdullayev",
-            email: "Rahmadjonabdullaye@gmail.com",
-            role: "admin"
-        },
-        {
-            id: 3,
-            name: "Jamshidbek Ismonaliyev",
-            email: "jamshidbek@gmail.com",
-            role: "users"
-        },
-    ])
+    // const [users, setUsers] = useState([
+    //     {
+    //         id: 1,
+    //         name: "Murodullayev Xojakbar",
+    //         email: "Hojiakbar@gmail.com",
+    //         role: "users"
+    //     },
+    //     {
+    //         id: 2,
+    //         name: "Rahmadjon Abdullayev",
+    //         email: "Rahmadjonabdullaye@gmail.com",
+    //         role: "admin"
+    //     },
+    //     {
+    //         id: 3,
+    //         name: "Jamshidbek Ismonaliyev",
+    //         email: "jamshidbek@gmail.com",
+    //         role: "users"
+    //     },
+    // ])
     const monthlyStats = [
         { month: '2024-01', userCount: 50 },
         { month: '2024-02', userCount: 70 },
@@ -41,7 +41,7 @@ const AdminPage = () => {
                 <div id="manage-users ">
                     <h3 className="text-2xl font-semibold mb-4">Foydalanuvchilarni boshqarish</h3>
                     <div className=" bg-white py-6 border-gray-300 rounded-lg shadow-lg">
-                        <table className="min-w-full"  >
+                        {/* <table className="min-w-full"  >
                             <thead>
                                 <tr>
                                     <th className="px-6 py-3 text-left text-sm font-medium text-gray-500">Ism</th>
@@ -67,7 +67,7 @@ const AdminPage = () => {
                                     </tr>
                                 ))}
                             </tbody>
-                        </table>
+                        </table> */}
                     </div>
                 </div>
             </div>

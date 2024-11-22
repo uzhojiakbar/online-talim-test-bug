@@ -20,8 +20,9 @@ function TheMainLesson() {
         setNwelesson({ ...newLesson, [e.target.name]: e.target.value })
     }
     const { nomi } = useParams()
+
     return (
-        <div className='bg-slate-100 w-[100%] pt-24 p-8 overflow-auto pl-[25%]'>
+        <div className={`bg-slate-100 w-[100%] pt-24 p-8 overflow-auto max-md:pl-8 pl-[27%] `}>
             <h1 className='text-3xl mb-4'>{nomi}</h1>
             <div className='mb-6 bg-white p-2 rounded-[8px] flex lg:w-[40%] w-[100%] sm:w-[60%] justify-around' >
                 <div>
