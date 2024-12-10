@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { instance } from "../../../../Hooks/api";
 import { useParams } from "react-router-dom";
 import { ThreeCircles } from "react-loader-spinner";
-
 const Dars = () => {
     const { nomi, darsnomi } = useParams();
     const [data, setData] = useState({});
