@@ -25,7 +25,7 @@ function Homesection1() {
             </div>
             <div className=' mt-12 p-3 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1  gap-8'>
                 {fan?.slice(0, count)?.map((item) => (
-                    <div data-aos="fade-up" data-aos-delay={`${item.delay}`} key={item.id} className='bg-[#303d46] flex flex-col justify-between text-center gap-3 p-6 rounded-lg text-white relative '>
+                    <div data-aos="fade-up" data-aos-delay={`${item.delay}`} key={item.nomi} className='bg-[#303d46] flex flex-col justify-between text-center gap-3 p-6 rounded-lg text-white relative '>
                         <div className='bg-white p-4 rounded-full w-24 mx-auto'>
                             <img src={att_logo} alt="" className='' />
                         </div>

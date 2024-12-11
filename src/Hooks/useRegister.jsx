@@ -10,6 +10,7 @@ export const useRegister = (onSuccess, onError) => {
       console.log(data?.data);
       if (onSuccess) {
         onSuccess();
+        // localStorage.setItem(JSON.stringify('usersdata',data?.data))
       }
     },
     onError: (error) => {

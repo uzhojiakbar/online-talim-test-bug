@@ -18,7 +18,6 @@ function Login() {
             }
             document.location.reload()
         },
-
         (error) => {
             console.log(error);
             
@@ -28,11 +27,11 @@ function Login() {
             else if (error?.response?.data?.error === "Noto'g'ri parol") {
                 notify('err', "Parol xato")
             }
-            else {
-                notify('err',
-                    `${error?.response?.data?.detail || "Qandeydur xatolik"}`
-                )
-            }
+            // else {
+            //     notify('err',
+            //         `${error?.response?.data?.detail || "Qandeydur xatolik"}`
+            //     )
+            // }
         }
     );
     const [loginData, setLoginData] = useState({ username: "", password: "" })

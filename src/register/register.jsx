@@ -19,6 +19,7 @@ function Register() {
         setFormdata({ ...formData, [e.target.name]: e.target.value })
 
     }
+    
     const { mutate } = useRegister(
         () => {
             nav('/profile')
@@ -75,26 +76,26 @@ function Register() {
                         <div className='flex flex-col gap-6'>
                             <label>
                                 <span>Ism</span><br />
-                                <input name='ism' onChange={onchange} type="text" className='mt-1 bg-white text-slate-800 w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Ismingizni kiriting' />
+                                <input required name='ism' onChange={onchange} type="text" className='mt-1 bg-white text-slate-800 w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Ismingizni kiriting' />
                             </label>
                             <label>
                                 <span>Familiya</span><br />
-                                <input type="text" onChange={onchange} name="familiya" className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Familiya' />
+                                <input required type="text" onChange={onchange} name="familiya" className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Familiya' />
                             </label>
                             <label>
                                 <span>Foydalanuvchi nomi</span><br />
-                                <input type="text" onChange={onchange} name='userName' className='mt-1 bg-white text-slate-800   w-full py-1 px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Foydalanuchi nomi' />
+                                <input required type="text" onChange={onchange} name='userName' className='mt-1 bg-white text-slate-800   w-full py-1 px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Foydalanuchi nomi' />
                             </label>
                         </div>
 
                         <div className='flex flex-col gap-6'>
                             <label>
                                 <span>Parol</span><br />
-                                <input type="password" onChange={onchange} name='parol' className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder=' parol' />
+                                <input required type="password" onChange={onchange} name='parol' className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder=' parol' />
                             </label>
                             <label>
                                 <span>Porolni tasdiqlash</span><br />
-                                <input type="text" onChange={onchange} name='tasdiqlash' className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Parolni tasdiqlang' />
+                                <input required type="text" onChange={onchange} name='tasdiqlash' className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Parolni tasdiqlang' />
                             </label>
                             <label className='text-slate-800 mt-1'>
                                 <span className='text-white'>Gurux</span><br />
