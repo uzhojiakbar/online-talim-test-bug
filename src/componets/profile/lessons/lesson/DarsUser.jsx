@@ -35,9 +35,9 @@ function DarsUser() {
       <ProfileNavbar />
       <h1 onClick={() => setSidebarOpen(!sidebarOpen)}
         className="text-2xl text-white absolute z-[1000] md:hidden top-5 left-4 cursor-pointer">{sidebarOpen ? "✖" : "☰"} </h1>
-      {sidebarOpen && <div onClick={closeModal} className="absolute w-full h-full bg-black/10 backdrop-blur-sm top-0 left-0 z-50"></div>}
+      {/* {sidebarOpen && <div onClick={closeModal} className="absolute w-full h-full bg-black/10 backdrop-blur-sm top-0 left-0 z-50"></div>} */}
       <aside
-        className={`fixed top-[73px] left-0 h-screen bg-gradient-to-b from-slate-700 to-gray-800 shadow-lg border-r border-gray-600 p-4  overflow-y-auto z-50 transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed top-[73px]  h-screen bg-gradient-to-b from-slate-700 to-gray-800 shadow-lg border-r border-gray-600 p-4  overflow-y-auto z-50 transition-transform duration-300 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
           } md:translate-x-0 w-[80%] md:w-[24%]`}>
         <h2 className="text-xl font-bold mb-6 text-gray-200">
           Mavzular ro'yxati
@@ -48,16 +48,13 @@ function DarsUser() {
               onClick={() => { mavZuMalumotlari(item.nomi),setSidebarOpen(!sidebarOpen)}}
               key={item.id}
               to="#"
-              className="block bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white p-3 rounded-lg transition duration-300 shadow-sm">
+              className="block left-0 bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white p-3 rounded-lg transition duration-300 shadow-sm">
               {item.nomi}
             </NavLink>
           ))}
         </div>
       </aside>
 
-
-
-      {/* Asosiy kontent */}
       <main className="ml-0 md:ml-[24%] w-full md:w-[76%] relative h-screen">
         {load && (
           <div className="bg-slate-200 z-50 w-full min-h-[100vh] top-0 left-0 flex justify-center items-center">
@@ -78,7 +75,7 @@ function DarsUser() {
             <p className="text-gray-300 text-xl">{data.name}</p>
             <div className="mt-3 text-gray-400 leading-relaxed">{data.desc}</div>
             <div
-              className="mt-6  p-1"
+              className="mt-6 iframevid p-1"
               id="embedContainer"
               dangerouslySetInnerHTML={{ __html: data.embed }}
             />

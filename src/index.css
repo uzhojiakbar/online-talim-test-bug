@@ -601,3 +601,11 @@ body{
   -webkit-transition: .2s linear;
   transition: .2s linear;
 }
+
+
+
+.iframevid iframe{
+  width: 100% !important;
+  height: 500px;
+}
+

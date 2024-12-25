@@ -10,10 +10,9 @@ export const loginHok = (onSuccess, onError) => {
     onSuccess: (data) => {
       setCookie('role', data?.data.role)
       setCookie('token', data?.data.token)
-      console.log('nima gap')
+      localStorage.setItem("myArray", JSON.stringify( data?.data));
       if (onSuccess) {
         onSuccess();
-        localStorage.setItem(JSON.stringify('access', data))
       }
     },
     onError: (error) => {

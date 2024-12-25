@@ -22,6 +22,7 @@ const MonthlyUserStatsChart = ({ monthlyStats }) => {
         borderWidth: 1,  // Bar chegarasining qalinligi
       },
     ],
+    
   };
 
   return (

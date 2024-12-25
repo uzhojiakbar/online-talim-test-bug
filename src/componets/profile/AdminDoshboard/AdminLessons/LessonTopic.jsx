@@ -14,9 +14,24 @@ function LessonTopic() {
   const { deleteDars } = delFan()
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const nav = useNavigate()
+
   useEffect(() => {
     addTopics(nomi)
+    setTimeout(() => {
+      nav(`/admin/${fanMavzulari[0].fan}/${fanMavzulari[0].nomi}`)
+      console.log("fanMavzulari",fanMavzulari);
+      
+    }, 1000);
   }, [])
+
+  
+  useEffect(() => {
+    if(fanMavzulari.length){
+      nav(`/admin/${fanMavzulari[0].fan}/${fanMavzulari[0].nomi}`)
+    }
+  }, [fanMavzulari])
+
   const closeModal = (e) => {
     if (e.target.className == "bg-black/10 backdrop-blur-sm   top-0 left-0 w-full h-full absolute z-[1000]") setSidebarOpen(false)
   }
@@ -33,10 +48,9 @@ function LessonTopic() {
         wrapperClass=""
       /></div>}
       <AdminNav />
-      {sidebarOpen && <div onClick={closeModal} className="bg-black/10 backdrop-blur-sm   top-0 left-0 w-full h-full absolute z-[1000]"></div>}
+      {sidebarOpen && <div onClick={closeModal} className="max-md:block hidden bg-black/10 badrop-blur-sm top-0 left-0 w-full h-full absolute z-[1000]"></div>}
       <h1 onClick={() => setSidebarOpen(!sidebarOpen)} className="text-2xl text-black  z-[2000] md:hidden max-sm:top-4 fixed  max-md:top-6 left-4 cursor-pointer">{sidebarOpen ? "✖" : "☰"} </h1>
-    
-       <div className={`max-sm:mt-[60px] h-[100vh] mt-[80px] bg-white max-md:w-[70%] w-[25%] overflow-auto left-0 fixed transition-transform duration-300 z-[1000] ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+       <div className={`max-sm:mt-[60px] h-[100vh] mt-[60px] bg-white max-md:w-[70%] w-[25%] overflow-auto  fixed transition-transform duration-300 z-[1000] ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
         } md:translate-x-0 w-[80%] md:w-[24%] `}>
         <div className='p-4 border'>
           {fanMavzulari?.map((i) => (

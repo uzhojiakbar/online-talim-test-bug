@@ -19,7 +19,7 @@ function Register() {
         setFormdata({ ...formData, [e.target.name]: e.target.value })
 
     }
-    
+
     const { mutate } = useRegister(
         () => {
             nav('/profile')
@@ -66,6 +66,8 @@ function Register() {
         }
     };
 
+    const [aye, setAye] = useState(false)
+    const [aye1, setAye1] = useState(false)
     return (
         <>
             <div className='w-[100%] h-[100vh] flex justify-center items-center'>
@@ -89,13 +91,17 @@ function Register() {
                         </div>
 
                         <div className='flex flex-col gap-6'>
-                            <label>
+                            <label className='relative'>
                                 <span>Parol</span><br />
-                                <input required type="password" onChange={onchange} name='parol' className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder=' parol' />
+                                <input required type={aye ? `text` : "password"} onChange={onchange} name='parol' className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder=' parol' />
+                                <span onClick={()=>setAye(!aye)} className='absolute top-[53%] right-2 cursor-pointer text-[#244760]'>{aye ? <i class="fa-solid fa-eye"> </i>:<i class="fa-solid fa-eye-slash"></i>}</span>
+
                             </label>
                             <label>
                                 <span>Porolni tasdiqlash</span><br />
-                                <input required type="text" onChange={onchange} name='tasdiqlash' className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Parolni tasdiqlang' />
+                                <input required type={aye1 ? `text` : "password"} onChange={onchange} name='tasdiqlash' className='mt-1 bg-white text-slate-800    w-full py-1  px-2 outline-none transition-all duration-300  bg-transparent ' placeholder='Parolni tasdiqlang' />
+                                <span onClick={()=>setAye1(!aye1)} className='absolute top-[48%] right-[32px] cursor-pointer text-[#244760]'>{aye1 ? <i class="fa-solid fa-eye"> </i>:<i class="fa-solid fa-eye-slash"></i>}</span>
+
                             </label>
                             <label className='text-slate-800 mt-1'>
                                 <span className='text-white'>Gurux</span><br />
