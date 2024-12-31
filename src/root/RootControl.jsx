@@ -9,6 +9,8 @@ import Admin from "../componets/profile/AdminDoshboard/AdminDoshboard";
 import LessonTopic from "../componets/profile/AdminDoshboard/AdminLessons/LessonTopic";
 import { getCookie } from "../Hooks/getCooce";
 import DarsUser from "../componets/profile/lessons/lesson/DarsUser";
+import Quiz from "../componets/Quiz/Quiz";
+
 
 const ProtectedRoute = ({ children, allowedRoles, token, role }) => {
     if (!token) {
@@ -42,7 +44,7 @@ function RootControl() {
                         </ProtectedRoute>
                     }
                 />
-                
+
                 <Route
                     path="/admin/:nomi"
                     element={
@@ -68,16 +70,24 @@ function RootControl() {
                             <Profile />
                         </ProtectedRoute>} />
 
-                {/* <Route
-                    path="/profile/lesson"
-                    element={
-                        <ProtectedRoute token={token} role={role} allowedRoles={["user"]}>
-                            <Leson />
-                        </ProtectedRoute>} /> */}
+
+
                 <Route path="/profile/:nomi"
                     element={
                         <ProtectedRoute token={token} role={role} allowedRoles={["user"]}>
                             <DarsUser />
+                        </ProtectedRoute>} />
+
+                <Route path="/profile/:nomi/:dasrnomi"
+                    element={
+                        <ProtectedRoute token={token} role={role} allowedRoles={["user"]}>
+                            <DarsUser />
+                        </ProtectedRoute>} />
+
+                <Route path="/profile/:nomi/:dasrnomi/:quiz"
+                    element={
+                        <ProtectedRoute token={token} role={role} allowedRoles={["user"]}>
+                            <Quiz />
                         </ProtectedRoute>} />
 
                 <Route path="*" element={<NotFound />} />

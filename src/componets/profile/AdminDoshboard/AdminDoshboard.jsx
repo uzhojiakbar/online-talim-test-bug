@@ -17,9 +17,7 @@ const AdminPage = () => {
             }
         }
         getAllusers()
-        console.log('salom ')
     }, [])
-console.log(userData)
     const monthlyStats = [
         { month: '2024-01', userCount: 50 },
         { month: '2024-02', userCount: 70 },

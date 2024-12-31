@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import ADDTopic from './ADDTopic'
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import ADDTopic from './ADDTopic';
 import { Button, Modal, Input } from 'antd';
 import Dars from './Dars';
-import usedelTopic from '../../../../Hooks/usedelTopic';
 import MavzuData from '../../../../Hooks/MavzuData';
 import updateTopic from '../../../../Hooks/updateTopic';
+import usedelTopic from '../../../../Hooks/usedelTopic';
 const { TextArea } = Input;
+
 function TheMainLesson() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [updateModalOpen, setupdateModalOpen] = useState(false);
@@ -14,6 +15,7 @@ function TheMainLesson() {
   const showModal = () => {
     setIsModalOpen(true);
   };
+
   const updateshowModal = () => {
     setupdateModalOpen(true);
   };
@@ -21,71 +23,76 @@ function TheMainLesson() {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
   const updatehandleCancel = () => {
     setupdateModalOpen(false);
   };
 
-  const { AddNewMavzu } = ADDTopic()
-  const [newLesson, setNwelesson] = useState({ name: "", desc: "", embed: "" })
+  const { AddNewMavzu } = ADDTopic();
+  const [newLesson, setNewLesson] = useState({ name: "", desc: "", embed: "" });
 
   const onchange = (e) => {
-    setNwelesson({ ...newLesson, [e.target.name]: e.target.value })
-  }
+    setNewLesson({ ...newLesson, [e.target.name]: e.target.value });
+  };
+
   const { nomi, darsnomi } = useParams();
 
   const { topicData, mavZuMalumotlari } = MavzuData();
-  useEffect(() => {
-    mavZuMalumotlari(nomi, darsnomi)
-  }, [darsnomi])
-  const name = topicData.name;
-  const desc = topicData.desc;
-  const embed = topicData.embed;
 
-  //mavzini yangilash
+  // Ma'lumotlar yuklanishi
+  useEffect(() => {
+    mavZuMalumotlari(nomi, darsnomi);
+  }, [darsnomi, nomi]);
+
+  // Mavzuni yangilash
   const { updateFunctons } = updateTopic();
   const [updateData, setUpdateData] = useState({
     name: "",
+    desc: "",
     embed: "",
-    desc: ""
   });
 
+  // topicData kelguncha ishlamaydigan default qiymatlar bilan
+  useEffect(() => {
+    if (topicData) {
+      setUpdateData({
+        name: topicData?.name || '',
+        desc: topicData?.desc || '',
+        embed: topicData?.embed || '',
+      });
+    }
+  }, [topicData]);
+
   const updatechange = (e) => {
-    setUpdateData({ ...updateData, [e.target.name]: e.target.value })
+    setUpdateData({ ...updateData, [e.target.name]: e.target.value });
+  };
+
+  // Delete mavzu
+  const { delTopic } = usedelTopic();
+
+  // Ma'lumotlar kelmaguncha formani rendermaslik
+  if (!topicData) {
+    return <div>Loading...</div>; // topicData kelganini kutish
   }
 
-  // }
+  // Update funksiyasini faqat kerakli ma'lumotlar bo'lsa chaqirish
+  const handleUpdate = () => {
+    if (!topicData) {
+      alert("Mavzu topilmadi!");
+      return;
+    }
 
-
+    if (nomi && darsnomi) {
+      updateFunctons(nomi, darsnomi, updateData);
+    } else {
+      alert("Ma'lumotlar yetarli emas!");
+    }
+  };
 
   return (
-    <div className={`bg-slate-100 w-[100%] pt-24 p-8 overflow-auto max-md:pl-8 pl-[27%]`}>
-      <h1 className='text-3xl mb-4'>{nomi}</h1>
-      {/* <div className='mb-6 bg-white p-2 rounded-[8px] flex lg:w-[40%] w-[100%] sm:w-[60%] justify-around' >
-                    <div>
-                        <button onClick={showModal} class="icon-btn add-btn  shadow-md">
-                            <div className="add-icon"></div>
-                            <div className="btn-txt">Yangi dars</div>
-                        </button>
-                    </div>
-                    <div>
+    <div className="bg-slate-100 w-[100%] pt-24 p-8 overflow-auto max-md:pl-8 pl-[27%]">
+      <h1 className="text-3xl mb-4">{nomi}</h1>
 
-                        <button class="btn">
-                            <p class="paragraph"> O'chirish </p>
-                            <span className="icon-wrapper">
-                                <span className='text-red-500'><i className="fa-solid fa-trash"></i></span>
-                            </span>
-                        </button>
-                    </div>
-                    <div>
-
-                        <button class="btn">
-                            <p class="paragraph"> yangilash </p>
-                            <span className="icon-wrapper">
-                                <span className='text-green-500'><i class="fa-solid fa-pen"></i></span>
-                            </span>
-                        </button>
-                    </div>
-                </div> */}
       <div className="flex gap-[20px] mt-[20px] overflow-auto">
         <Button onClick={showModal}
           style={{
@@ -103,48 +110,69 @@ function TheMainLesson() {
             gap: "10px",
             alignItems: "center",
           }}
-        // onClick={handleCancelEdit}
         >
           <div className="fa-solid text-[16px] fa-edit text-black"></div>
           <div>Tahrirlash</div>
         </Button>
 
-
-        <Button onClick={() => delTopic(nomi)}
+        <Button onClick={() => delTopic(nomi, topicData?.name)}
           style={{
             display: "flex",
             gap: "10px",
             alignItems: "center",
           }}
-        // onClick={DeleteKafedra}
         >
           <div className="fa-solid text-[16px] fa-trash text-[red]"></div>
           <div>Darsni o'chirish</div>
         </Button>
       </div>
 
-      {/* BU modal dasr qoshish uchun */}
+      {/* Modal - Mavzu qo'shish */}
       <Modal footer={[
-        <Button onClick={() => AddNewMavzu(newLesson, nomi)} type="primary" className='mt-6 py-4' block>
+        <Button onClick={() => AddNewMavzu(newLesson, nomi)} type="primary" className="mt-6 py-4" block>
           Yuborish
-        </Button>]} open={isModalOpen} onCancel={handleCancel}>
-        <Input onChange={onchange} name='name' placeholder="Mavzu nomi" className='mt-8 py-2' />
-        <Input onChange={onchange} name='embed' placeholder="Link" className='mt-8 py-2' />
-        <TextArea onChange={onchange} name='desc' rows={4} maxLength={124} showCount className='mt-6' placeholder='Dars tasnifi' />
+        </Button>
+      ]} open={isModalOpen} onCancel={handleCancel}>
+        <Input onChange={onchange} name="name" placeholder="Mavzu nomi" className="mt-8 py-2" />
+        <Input onChange={onchange} name="embed" placeholder="Link" className="mt-8 py-2" />
+        <TextArea onChange={onchange} name="desc" rows={4} maxLength={124} showCount className="mt-6" placeholder="Dars tasnifi" />
       </Modal>
 
-      {/* bu modal fanni tahrirlash uchun */}
-      <Modal footer={[
-        <Button onClick={() => updateFunctons(nomi, darsnomi,updateData)} type="primary" className='mt-6 py-4' block>
+      {/* Modal - Mavzu tahrirlash */}
+      <Modal  footer={[
+        <Button onClick={handleUpdate} type="primary" className="mt-6 py-4" block>
           Yuborish
-        </Button>]} open={updateModalOpen} onCancel={updatehandleCancel}>
-        <Input onChange={updatechange} name='name'  placeholder="yangi mavzu nomi" className='mt-8 py-2' />
-        <Input onChange={updatechange} name='embed'  placeholder="yangi link" className='mt-8 py-2' />
-        <TextArea  onChange={updatechange} name='desc'  rows={4} maxLength={124} showCount className='mt-6' placeholder='Dars tasnifi' />
+        </Button>
+      ]} open={updateModalOpen} onCancel={updatehandleCancel}>
+        <Input
+          onChange={updatechange}
+          name="name"
+          placeholder="yangi mavzu nomi"
+          className="mt-8 py-2"
+          defaultValue={updateData?.name || ''} // defaultValue ishlatish
+        />
+        <Input
+          onChange={updatechange}
+          name="embed"
+          placeholder="yangi link"
+          className="mt-8 py-2"
+          defaultValue={updateData?.embed || ''} // defaultValue ishlatish
+        />
+        <TextArea
+          onChange={updatechange}
+          name="desc"
+          rows={4}
+          maxLength={124}
+          showCount
+          className="mt-6"
+          placeholder="Dars tasnifi"
+          defaultValue={updateData?.desc || ''} // defaultValue ishlatish
+        />
       </Modal>
+
       <Dars />
     </div>
-  )
+  );
 }
 
-export default TheMainLesson
+export default TheMainLesson;

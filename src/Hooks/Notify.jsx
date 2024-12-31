@@ -10,7 +10,6 @@ const getNotify = () => {
         return toast.loading(text || "Yuklanmoqda...");
       }
     };
-  
     return { notify, dismiss: toast.dismiss };
   };
 

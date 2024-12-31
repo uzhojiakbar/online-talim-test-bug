@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate, useParams } from 'react-router-dom';
 import useFan from '../../../../Hooks/useFan';
 import { useAddTopic } from '../../../../Hooks/useAddTopic';
-import { instance } from '../../../../Hooks/api';
 import { delFan } from '../../../../Hooks/delFan';
 import { ThreeCircles } from 'react-loader-spinner'
 import AdminNav from '../AdminNav'
@@ -19,12 +18,9 @@ function LessonTopic() {
   useEffect(() => {
     addTopics(nomi)
     setTimeout(() => {
-      nav(`/admin/${fanMavzulari[0].fan}/${fanMavzulari[0].nomi}`)
-      console.log("fanMavzulari",fanMavzulari);
-      
+      nav(`/admin/${ fanMavzulari[0].fan}/${fanMavzulari[0].nomi}`)
     }, 1000);
   }, [])
-
   
   useEffect(() => {
     if(fanMavzulari.length){
@@ -33,11 +29,11 @@ function LessonTopic() {
   }, [fanMavzulari])
 
   const closeModal = (e) => {
-    if (e.target.className == "bg-black/10 backdrop-blur-sm   top-0 left-0 w-full h-full absolute z-[1000]") setSidebarOpen(false)
+    if (e.target.className == "bg-black/10 backdrop-blur-sm top-0 left-0 w-full h-full absolute z-[1000]") setSidebarOpen(false)
   }
 
   return (
-    <div className='bg-slate-100 min-h-[100vh] flex relative  '>
+    <div className='bg-slate-100 min-h-[100vh] flex relative'>
       {loading && <div className='bg-slate-200 absolute z-50 w-full min-h-[100vh] top-0 left-0 flex justify-center items-center '><ThreeCircles
         visible={true}
         height="100"
@@ -58,7 +54,7 @@ function LessonTopic() {
               <NavLink
                 to={`/admin/${i.fan}/${i.nomi}`}
                 className='border-b block p-1 px-3 rounded-sm hover:bg-indigo-500 hover:text-white'>
-                  <p>{i.nomi}</p>
+                  <p className='w-full truncate'>{i.nomi}</p>
               </NavLink>
             </div>
           ))}
@@ -67,7 +63,6 @@ function LessonTopic() {
         </button>
         </div>
       </div>
-
       <TheMainLesson />
     </div>
   );
