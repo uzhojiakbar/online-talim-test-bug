@@ -43,20 +43,20 @@ function Addlesson() {
 
                 {loading && <div className='loaderWindow'><div className='loader'></div></div>}
                 {fan?.map((i) => (
-                    <div key={i.nomi} className="card ">
-                        <a className="card1" href="#">
-                            <NavLink to={`/admin/${i.nomi}`}>
+                    <NavLink to={`/admin/${i.nomi}`}>
+                        <div key={i.nomi} className="card ">
+                            <a className="card1" href="#">
                                 <p>{i.nomi}</p>
                                 <p className="small">{i.desc}</p>
                                 <div className='flex justify-between small items-center'>
                                     <p>{i.teacher}</p>
                                     {/* <p className='flex items-center gap-2 small'>{i.views} <span><FaEye /> </span></p> */}
                                 </div>
-                            </NavLink>
-                            <div className="go-corner" href="#">
-                            </div>
-                        </a>
-                    </div>
+                                <div className="go-corner" href="#">
+                                </div>
+                            </a>
+                        </div>
+                    </NavLink>
                 ))}
 
             </div>

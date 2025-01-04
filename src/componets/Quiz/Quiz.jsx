@@ -9,21 +9,10 @@ const tests = [
       { id: 1, name: "HTML, CSS, JAVASCRIPT" },
       { id: 2, name: "Python" },
       { id: 3, name: "PHP, Pascal, C++" },
-      { id: 4, name: "Pashol naxx. Men dizaynerman)" },
-    ],
+      ],
     correctAnswerId: 1,
   },
-  {
-    id: 2,
-    Title: "CHMO nima degani?",
-    variant: [
-      { id: 1, name: "CH M O" },
-      { id: 2, name: "Jamiyatga foydasi tegmaydigan odam" },
-      { id: 3, name: "CHMO - Jamshid viner" },
-    ],
-    correctAnswerId: 2,
-  },
-  // Add more tests here (total 10)
+ 
   {
     id: 3,
     Title: "React nima?",
@@ -193,11 +182,10 @@ function Quiz() {
                   <button
                     key={option.id}
                     onClick={() => handleAnswerSelect(option.id)}
-                    className={`option w-full p-3 border border-gray-300 rounded-lg ${
-                      isSelected
+                    className={`option w-full p-3 border border-gray-300 rounded-lg ${isSelected
                         ? "bg-green-500 text-white" // Tanlangan variant uchun yashil rang
                         : "bg-white hover:bg-blue-100"
-                    } focus:outline-none`}
+                      } focus:outline-none`}
                   >
                     {option.name}
                   </button>
@@ -208,8 +196,7 @@ function Quiz() {
           <div className="navigation mt-4">
             <button
               onClick={handleNextQuestion}
-              className="bg-blue-500 text-white p-2 rounded"
-            >
+              className="bg-blue-500 text-white p-2 rounded">
               {currentQuestionIndex < tests.length - 1 ? "Keyingi savol" : "Testni yakunlash"}
             </button>
           </div>

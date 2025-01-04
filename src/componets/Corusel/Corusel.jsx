@@ -14,20 +14,17 @@ const Corusel = () => {
     slidesToScroll: 1, // bir marta nechta slayd o'tadi
     autoplay: true, // avtomatik aylanish
     autoplaySpeed: 3000, // avtomatik aylanish tezligi
-    // arrows: false, // Chap va o'ng tugmalarini olib tashlash
   };
 
   return (
-    <div data-aos="zoom-in ">
-      <Slider {...settings}>
+    <div id='ustozlar' data-aos="zoom-in " >
+      <Slider  {...settings}>
         <div className="">
           <div className="md:px-16 mx-auto w-full max-w-[1200px] rounded-lg overflow-hidden flex max-md:block items-center justify-between">
-            {/* Rasm qismi */}
             <div className="md:w-1/2 h-[400px] flex items-center justify-center relative overflow-hidden">
               <img src={ticher} alt="Ustoz rasmi" className="w-[80%] rounded-full absolute md:-translate-y-14 max-sm:translate-y-12 object-cover" />
             </div>
 
-            {/* Ma'lumot qismi */}
             <div className="md:w-1/2 max-md:text-center p-6">
               {ticherData.map((item) => {
                 return (
@@ -44,12 +41,11 @@ const Corusel = () => {
         </div>
         <div className="">
           <div className="md:px-16 mx-auto w-full max-w-[1200px] rounded-lg overflow-hidden flex max-md:block items-center justify-between">
-            {/* Rasm qismi */}
+
             <div className="md:w-1/2 h-[400px] flex items-center justify-center relative overflow-hidden">
               <img src={ticher} alt="Ustoz rasmi" className="w-[80%] rounded-full absolute md:-translate-y-14 max-sm:translate-y-12 object-cover" />
             </div>
 
-            {/* Ma'lumot qismi */}
             <div className="md:w-1/2 max-md:text-center p-6">
               {ticherData.map((item) => {
                 return (
@@ -66,12 +62,10 @@ const Corusel = () => {
         </div>
         <div className="">
           <div className="md:px-16 mx-auto w-full max-w-[1200px] rounded-lg overflow-hidden flex max-md:block items-center justify-between">
-            {/* Rasm qismi */}
             <div className="md:w-1/2 h-[400px] flex items-center justify-center relative overflow-hidden">
               <img src={ticher} alt="Ustoz rasmi" className="w-[80%] rounded-full absolute md:-translate-y-14 max-sm:translate-y-12 object-cover" />
             </div>
 
-            {/* Ma'lumot qismi */}
             <div className="md:w-1/2 max-md:text-center p-6">
               {ticherData.map((item) => {
                 return (
@@ -88,12 +82,10 @@ const Corusel = () => {
         </div>
         <div className="">
           <div className="md:px-16 mx-auto w-full max-w-[1200px] rounded-lg overflow-hidden flex max-md:block items-center justify-between">
-            {/* Rasm qismi */}
             <div className="md:w-1/2 h-[400px] flex items-center justify-center relative overflow-hidden">
               <img src={ticher} alt="Ustoz rasmi" className="w-[80%] rounded-full absolute md:-translate-y-14 max-sm:translate-y-12 object-cover" />
             </div>
 
-            {/* Ma'lumot qismi */}
             <div className="md:w-1/2 max-md:text-center p-6">
               {ticherData.map((item) => {
                 return (

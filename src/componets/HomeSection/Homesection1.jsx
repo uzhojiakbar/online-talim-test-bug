@@ -31,7 +31,7 @@ function Homesection1() {
                         </div>
                         <h1 className='text-[20px] font-bold text-white'>{item.nomi}</h1>
                         <p className='text-[15px] text-[#8ca5bb]'>{item.desc}</p>
-                        <NavLink to={`/profile/${item.nomi}`} className='bg-[#FF6E30] hover:bg-[#df6c3a] w-[70%] mx-auto py-2 rounded-full text-[14px] font-[500]'>Fanga o'tish</NavLink>
+                        <NavLink to={`/login`} className='bg-[#FF6E30] hover:bg-[#df6c3a] w-[70%] mx-auto py-2 rounded-full text-[14px] font-[500]'>Fanga o'tish</NavLink>
                         <div className='flex gap-16 mt-6 items-center  justify-between  '>
                             <p className='text-[#8ca5bb] text-[14px] font-[500]'>Dars soni {item.views}</p>
                             <div>

@@ -6,24 +6,23 @@ import { instance } from "../../../../Hooks/api";
 import { ThreeCircles } from "react-loader-spinner";
 
 function DarsUser() {
-  const { nomi } = useParams(); // URL'dan parametrlarga mos qiymatlarni olish
+  const { nomi } = useParams();
   const { fanMavzulari, addTopics } = useAddTopic();
   const [load, setLoad] = useState(false);
   const [data, setData] = useState({});
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [darsnomi, setDarsnomi] = useState('')
   useEffect(() => {
-    addTopics(nomi); // Mavzu ro'yxatini olish
+    addTopics(nomi); 
   }, [nomi]);
 
-  // Dars nomi bo'lmasa, birinchi mavzuni olish
   useEffect(() => {
     if (fanMavzulari.length > 0) {
-      const firstTopic = fanMavzulari[0].nomi; // Birinchi dars nomini olish
+      const firstTopic = fanMavzulari[0].nomi; 
       if (!darsnomi) {
-        mavZuMalumotlari(firstTopic); // Dars nomi URL'da yo'q bo'lsa, birinchi darsni ko'rsatish
+        mavZuMalumotlari(firstTopic); 
       } else {
-        mavZuMalumotlari(darsnomi); // Agar dars nomi URL'da mavjud bo'lsa, o'sha darsni ko'rsatish
+        mavZuMalumotlari(darsnomi);
       }
     }
   }, [fanMavzulari, darsnomi]);
@@ -104,8 +103,7 @@ function DarsUser() {
             <div className="flex">
               <NavLink
                 to={darsnomi ? `/profile/${nomi}/${darsnomi}/quiz` : "#"}
-                className={`bg-slate-400 px-6 py-2 rounded-sm ml-1 mt-3 hover:bg-slate-500 cursor-pointer ${!darsnomi ? "cursor-not-allowed opacity-50" : ""}`}
-              >
+                className={`bg-slate-400 px-6 py-2 rounded-sm ml-1 mt-3 hover:bg-slate-500 cursor-pointer ${!darsnomi ? "cursor-not-allowed opacity-50" : ""}`}>
                 Testga o'tish
               </NavLink>
             </div>

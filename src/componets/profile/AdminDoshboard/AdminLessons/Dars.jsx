@@ -11,12 +11,12 @@ const Dars = () => {
     }, [darsnomi]);
 
     return (
-        <div className="mt-6">
+        <div className="mt-6 overflow-hidden">
             {load && (
                 <div className="bg-slate-200 absolute z-50 w-full min-h-[100vh] top-0 left-0 flex justify-center items-center ">
                     <ThreeCircles
                         visible={true}
-                        height="100"
+                        height="200"
                         width="100"
                         color="blue"
                         ariaLabel="three-circles-loading"

@@ -16,14 +16,14 @@ function Navbar() {
         },
         {
             id: 3,
-            name: 'Tanlovim',
-            path: '/'
+            name: 'Ustozlar',    
+            manzil: '#ustozlar'
         },
-        {
-            id: 4,
-            name: 'Blog',
-            path: '/'
-        },
+        // {
+        //     id: 4,
+        //     name: 'Blog',
+        //     path: '/'
+        // },
     ])
 
     const [openForm, setOpenForm] = useState(false)
