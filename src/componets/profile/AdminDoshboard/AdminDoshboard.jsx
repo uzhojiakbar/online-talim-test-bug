@@ -3,6 +3,7 @@ import AdminNav from "./AdminNav";
 import MonthlyUserStatsChart from "./Chart";
 import Addlesson from "./AdminLessons/Addlesson";
 import { instance } from "../../../Hooks/api";
+import Scroltop from "../../Scroltop";
 const AdminPage = () => {
 
     const [userData, setUserData] = useState([])
@@ -18,15 +19,7 @@ const AdminPage = () => {
         }
         getAllusers()
     }, [])
-    const monthlyStats = [
-        { month: '2024-01', userCount: 50 },
-        { month: '2024-02', userCount: 70 },
-        { month: '2024-03', userCount: 90 },
-        { month: '2024-04', userCount: 110 },
-        { month: '2024-05', userCount: 130 },
-        { month: '2024-06', userCount: 50 },
-    ];
-
+ 
     return (
         <div className="bg-slate-100 ">
             <AdminNav />
@@ -48,7 +41,7 @@ const AdminPage = () => {
                     </div>
                 </div>
             </div>
-            <MonthlyUserStatsChart monthlyStats={monthlyStats} />
+            <Scroltop/>
         </div>
     );
 };

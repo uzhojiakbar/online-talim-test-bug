@@ -129,9 +129,9 @@ const QuizAdmin = () => {
 
     const updateFunction = () => {
         window.scrollTo(0, 0)
-
     }
 
+    console.log(quizzes)
     return (
         <div className="min-h-screen bg-white flex flex-col items-center py-10 px-4">
             <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Testlar</h1>
@@ -233,8 +233,7 @@ const QuizAdmin = () => {
 
             <button
                 onClick={deleteAllQuizzes}
-                className="bg-red-500 text-white px-6 py-3 rounded hover:bg-gray-600 mt-6"
-            >
+                className="bg-red-500 text-white px-6 py-3 rounded hover:bg-gray-600 mt-6">
                 Hammasini o'chirish
             </button>
         </div>

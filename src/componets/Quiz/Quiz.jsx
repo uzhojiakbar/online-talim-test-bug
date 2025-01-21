@@ -1,117 +1,154 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import UsePostQuiz from "../../Hooks/UsePostQuiz";
+import { Pie } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { useParams } from "react-router-dom";
 
+ChartJS.register(ArcElement, Tooltip, Legend);
 
-function Quiz() {
-  const { QuizData,data } = UsePostQuiz();
-  console.log(data)
-
-  const navigate = useNavigate();
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [userAnswers, setUserAnswers] = useState([]);
+const QuizUser = () => {
+  const [userAnswers, setUserAnswers] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [score, setScore] = useState(0);
+  const [attemptsLeft, setAttemptsLeft] = useState(2);
+  const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
+  const { nomi, dasrnomi } = useParams()
+  const quizzes = [
+    {
+      id: "1",
+      Title: "Qaysi biri dasturlash tili?",
+      variant: [
+        { id: "1", name: "HTML" },
+        { id: "2", name: "CSS" },
+        { id: "3", name: "JavaScript" },
+      ],
+      correctAnswerId: "3",
+    },
+    {
+      id: "2",
+      Title: "React nima uchun ishlatiladi?",
+      variant: [
+        { id: "1", name: "Server yaratish" },
+        { id: "2", name: "Frontend yaratish" },
+        { id: "3", name: "Ma'lumotlar bazasini boshqarish" },
+      ],
+      correctAnswerId: "2",
+    },
+  ];
 
-  const currentTest = tests[currentQuestionIndex];
-
-  // Foydalanuvchi javobini saqlash
-  const handleAnswerSelect = (answerId) => {
-    const updatedAnswers = userAnswers.filter(
-      (answer) => answer.Savolid !== currentTest.id
-    ); // Current savolga javobni yangilash
-    updatedAnswers.push({ Savolid: currentTest.id, javobID: answerId });
-    setUserAnswers(updatedAnswers);
+  const handleAnswerChange = (selectedVariantId) => {
+    setUserAnswers((prev) => ({
+      ...prev,
+      [quizzes[currentQuizIndex].id]: selectedVariantId,
+    }));
   };
 
-  // Keyingi savolga o'tish
-  const handleNextQuestion = () => {
-    if (currentQuestionIndex < tests.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
+  const handleNextQuiz = () => {
+    if (currentQuizIndex < quizzes.length - 1) {
+      setCurrentQuizIndex((prevIndex) => prevIndex + 1);
     } else {
-      setIsSubmitted(true); // Test tugadi
+      handleSubmit();
     }
   };
 
-  // Test tugaganidan so'ng natijani hisoblash
-  const calculateResult = () => {
-    const result = userAnswers.map((userAnswer) => {
-      const correctAnswer = tests.find(
-        (test) => test.id === userAnswer.Savolid
-      );
-      return {
-        id: userAnswer.Savolid,
-        userJavobi: userAnswer.javobID,
-        TogriJavob: correctAnswer.correctAnswerId,
-        Respone: userAnswer.javobID === correctAnswer.correctAnswerId,
-        correctAnswerText: correctAnswer.variant.find(
-          (item) => item.id === correctAnswer.correctAnswerId
-        ).name,
-      };
+  const handleSubmit = () => {
+    let correctAnswers = 0;
+    quizzes.forEach((quiz) => {
+      if (userAnswers[quiz.id] === quiz.correctAnswerId) {
+        correctAnswers++;
+      }
     });
+    setScore(correctAnswers);
+    setIsSubmitted(true);
+    setAttemptsLeft((prev) => prev - 1);
+  };
 
-    const correctAnswers = result.filter((item) => item.Respone).length;
-    const totalQuestions = result.length;
-    const percentage = ((correctAnswers / totalQuestions) * 100).toFixed(0);
+  const handleRetry = () => {
+    setUserAnswers({});
+    setIsSubmitted(false);
+    setScore(0);
+    setCurrentQuizIndex(0);
+  };
 
-    return {
-      foiz: `${percentage}%`,
-      oth: result,
-    };
+  const correctPercentage = Math.floor((score / quizzes.length) * 100);
+
+  const chartData = {
+    labels: ["To'g'ri", "Noto'g'ri"],
+    datasets: [
+      {
+        data: [score, quizzes.length - score],
+        backgroundColor: ["#4CAF50", "#FF5252"],
+        hoverBackgroundColor: ["#45A049", "#FF1744"],
+      },
+    ],
   };
 
   return (
-    <div className="quiz-container bg-gray-100 p-6 md:w-[80%] max-md:mx-3 mx-auto mt-6 w-[100] rounded-lg  shadow-lg">
-      {!isSubmitted ? (
-        <>
-          {/* Hozirgi test raqami va jami testlar soni */}
-          <div className="question-info text-sm mb-4">
-            <p>
-              Savol {currentQuestionIndex + 1} / {tests.length}
-            </p>
-          </div>
+    <div className="min-h-screen bg-white flex flex-col items-center py-10 px-4">
+      <h1 className="text-3xl font-bold text-gray-800 mb-4"> Fan: {nomi}</h1>
+      <h1 className="text-3xl font-bold text-gray-800 mb-8">Dars: {dasrnomi}</h1>
 
-          <div className="question mb-4">
-            <h2 className="text-xl font-semibold mb-4">{currentTest.Title}</h2>
-            <div className="options space-y-3">
-              {currentTest.variant.map((option) => {
-                const selectedAnswer = userAnswers.find(
-                  (answer) => answer.Savolid === currentTest.id
-                );
-                const isSelected = selectedAnswer
-                  ? selectedAnswer.javobID === option.id
-                  : false;
-
-                return (
-                  <button
-                    key={option.id}
-                    onClick={() => handleAnswerSelect(option.id)}
-                    className={`option w-full p-3 border border-gray-300 rounded-lg ${isSelected
-                      ? "bg-green-500 text-white" // Tanlangan variant uchun yashil rang
-                      : "bg-white hover:bg-blue-100"
-                      } focus:outline-none`}
-                  >
-                    {option.name}
-                  </button>
-                );
-              })}
-            </div>
+      {isSubmitted ? (
+        <div className="text-center">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+            Natija: {score} / {quizzes.length} ({correctPercentage}%)
+          </h2>
+          <div className="w-1/2 mx-auto mb-6">
+            <Pie data={chartData} />
           </div>
-          <div className="navigation mt-4">
+          {attemptsLeft > 0 ? (
             <button
-              onClick={handleNextQuestion}
-              className="bg-blue-500 text-white p-2 rounded">
-              {currentQuestionIndex < tests.length - 1 ? "Keyingi savol" : "Testni yakunlash"}
+              onClick={handleRetry}
+              className="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600 transition"
+            >
+              Qayta urinib ko'ring (Qolgan imkoniyatlar: {attemptsLeft})
             </button>
-          </div>
-        </>
+          ) : (
+            <h3 className="text-lg font-semibold text-red-500">
+              Testni yechish imkoniyati tugadi.
+            </h3>
+          )}
+        </div>
       ) : (
-        <div className="results mt-6">
-          <h2 className="text-xl font-semibold">Natijalar</h2>
-          <p>{calculateResult().foiz} to'g'ri javoblar</p>
+        <div className="w-full max-w-4xl">
+          <div className="bg-gray-100 border p-4 rounded-lg shadow mb-4">
+            <h3 className="text-lg font-bold text-gray-800 mb-2">
+              Savol {currentQuizIndex + 1} / {quizzes.length}
+            </h3>
+            <h4 className="text-lg font-semibold text-gray-700">
+              {quizzes[currentQuizIndex].Title}
+            </h4>
+            <ul className="list-disc pl-5 text-gray-700">
+              {quizzes[currentQuizIndex].variant.map((v) => (
+                <li key={v.id}>
+                  <label className="flex items-center">
+                    <input
+                      type="radio"
+                      name={`quiz-${quizzes[currentQuizIndex].id}`}
+                      value={v.id}
+                      checked={
+                        userAnswers[quizzes[currentQuizIndex].id] === v.id.toString()
+                      }
+                      onChange={() =>
+                        handleAnswerChange(v.id.toString())
+                      }
+                      className="mr-2"
+                    />
+                    {v.name}
+                  </label>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <button
+            onClick={handleNextQuiz}
+            className="bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition mt-6"
+          >
+            Keyingisiga o'tish
+          </button>
         </div>
       )}
     </div>
   );
-}
+};
 
-export default Quiz;
+export default QuizUser;

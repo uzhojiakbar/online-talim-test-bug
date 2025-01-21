@@ -13,7 +13,7 @@ body{
 }
 /* Scrollbar'ning umumiy o'lchami */
 ::-webkit-scrollbar {
-    width: 8px; /* kengligi */
+    width: 4px; /* kengligi */
 }
 /* Scrollbar fon rangi */
 ::-webkit-scrollbar-track {
@@ -616,5 +616,13 @@ iframe {
   }
 }
 
+.test{
+  color: red;
+}
 
 
+.line-clamp-1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

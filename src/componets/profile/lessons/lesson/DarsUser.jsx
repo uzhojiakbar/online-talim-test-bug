@@ -4,6 +4,7 @@ import { NavLink, useParams } from "react-router-dom";
 import { useAddTopic } from "../../../../Hooks/useAddTopic";
 import { instance } from "../../../../Hooks/api";
 import { ThreeCircles } from "react-loader-spinner";
+import Scroltop from "../../../Scroltop";
 
 function DarsUser() {
   const { nomi } = useParams();
@@ -13,14 +14,14 @@ function DarsUser() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [darsnomi, setDarsnomi] = useState('')
   useEffect(() => {
-    addTopics(nomi); 
+    addTopics(nomi);
   }, [nomi]);
 
   useEffect(() => {
     if (fanMavzulari.length > 0) {
-      const firstTopic = fanMavzulari[0].nomi; 
+      const firstTopic = fanMavzulari[0].nomi;
       if (!darsnomi) {
-        mavZuMalumotlari(firstTopic); 
+        mavZuMalumotlari(firstTopic);
       } else {
         mavZuMalumotlari(darsnomi);
       }
@@ -45,6 +46,8 @@ function DarsUser() {
     }
   };
 
+
+
   return (
     <div className="min-h-screen relative bg-gradient-to-br from-gray-900 via-slate-800 to-gray-700 text-white">
       <ProfileNavbar />
@@ -68,13 +71,25 @@ function DarsUser() {
               }}
               key={item.id}
               to={`/profile/${nomi}/${item.nomi}`}
-              className="block left-0 bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white p-3 rounded-lg transition duration-300 shadow-sm"
+              className={({ isActive }) =>
+                isActive
+                  ? 'block left-0 bg-gray-800 hover:bg-gray-600 text-white hover:text-white p-3 pl-6 rounded-lg transition duration-300 shadow-sm overflow-hidden'
+                  : 'block left-0 bg-gray-700 hover:bg-gray-600 text-gray-300 hover:text-white p-3 rounded-lg transition duration-300 shadow-sm overflow-hidden'
+              }
             >
-              <p onClick={() => setDarsnomi(item.nomi)}>{item.nomi}</p>
+              <p
+                onClick={() => setDarsnomi(item.nomi)}
+                className="line-clamp-1"
+              >
+                {item.nomi}
+              </p>
             </NavLink>
           ))}
+
+
         </div>
-      </aside>
+
+      </aside >
 
       <main className="ml-0 md:ml-[24%] w-full md:w-[76%] relative h-screen">
         {load && (
@@ -107,10 +122,11 @@ function DarsUser() {
                 Testga o'tish
               </NavLink>
             </div>
+            <Scroltop />
           </div>
         </div>
-      </main>
-    </div>
+      </main >
+    </div >
   );
 }
 
