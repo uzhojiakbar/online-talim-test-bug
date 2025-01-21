@@ -38,6 +38,10 @@ const Dars = () => {
                     </div>
                 </div>
             )}
+          
+
+          {/* test chaqirish */}
+          {/* <QuizAdmin/> */}
         </div>
     );
 };

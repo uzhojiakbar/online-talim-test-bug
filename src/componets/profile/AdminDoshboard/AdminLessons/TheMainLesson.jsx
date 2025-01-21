@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ADDTopic from './ADDTopic';
 import { Button, Modal, Input } from 'antd';
 import Dars from './Dars';
@@ -89,11 +89,16 @@ function TheMainLesson() {
     }
   };
 
+  const nav = useNavigate();
+  const navigate = ()=>{
+    nav(`/admin/${nomi}/${darsnomi}/quizAmin`)
+  }
+
   return (
     <div className="bg-slate-100 w-[100%] pt-24 p-8 overflow-auto max-md:pl-8 pl-[27%]">
       <h1 className="text-3xl mb-4">{nomi}</h1>
 
-      <div className="flex gap-[20px] mt-[20px] overflow-auto">
+      <div className="grid lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-[20px] mt-[20px] overflow-auto">
         <Button onClick={showModal}
           style={{
             display: "flex",
@@ -102,7 +107,7 @@ function TheMainLesson() {
           }}
         >
           <div className="fa-solid text-[16px] fa-plus text-black"></div>
-          <div>Fan qoshish</div>
+          <div>Dars qoshish</div>
         </Button>
         <Button onClick={updateshowModal}
           style={{
@@ -111,7 +116,7 @@ function TheMainLesson() {
             alignItems: "center",
           }}
         >
-          <div className="fa-solid text-[16px] fa-edit text-black"></div>
+          <div className="fa-solid text-[16px] fa-edit text-[orange]"></div>
           <div>Tahrirlash</div>
         </Button>
 
@@ -125,6 +130,20 @@ function TheMainLesson() {
           <div className="fa-solid text-[16px] fa-trash text-[red]"></div>
           <div>Darsni o'chirish</div>
         </Button>
+
+
+        <Button
+        
+        onClick={navigate}
+        style={{
+          display: "flex",
+          gap: "10px",
+          alignItems: "center",
+        }}
+      >
+        <div className="fa-solid text-[16px] fa-plus text-[blue]"></div>
+        <div>Test qo'shish</div>
+      </Button>
       </div>
 
       {/* Modal - Mavzu qo'shish */}
@@ -138,8 +157,9 @@ function TheMainLesson() {
         <TextArea onChange={onchange} name="desc" rows={4} maxLength={124} showCount className="mt-6" placeholder="Dars tasnifi" />
       </Modal>
 
+
       {/* Modal - Mavzu tahrirlash */}
-      <Modal  footer={[
+      <Modal footer={[
         <Button onClick={handleUpdate} type="primary" className="mt-6 py-4" block>
           Yuborish
         </Button>
@@ -169,6 +189,11 @@ function TheMainLesson() {
           defaultValue={updateData?.desc || ''} // defaultValue ishlatish
         />
       </Modal>
+
+
+
+
+     
 
       <Dars />
     </div>

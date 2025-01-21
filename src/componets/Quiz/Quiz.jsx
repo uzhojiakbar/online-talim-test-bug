@@ -1,109 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import UsePostQuiz from "../../Hooks/UsePostQuiz";
 
-const tests = [
-  {
-    id: 1,
-    Title: "Web dasturlash asoslari nimalardan iborat?",
-    variant: [
-      { id: 1, name: "HTML, CSS, JAVASCRIPT" },
-      { id: 2, name: "Python" },
-      { id: 3, name: "PHP, Pascal, C++" },
-      ],
-    correctAnswerId: 1,
-  },
- 
-  {
-    id: 3,
-    Title: "React nima?",
-    variant: [
-      { id: 1, name: "JavaScript kutubxonasi" },
-      { id: 2, name: "Python kutubxonasi" },
-      { id: 3, name: "CSS kutubxonasi" },
-      { id: 4, name: "C++ kutubxonasi" },
-    ],
-    correctAnswerId: 1,
-  },
-  {
-    id: 4,
-    Title: "HTML ning maqsadi nima?",
-    variant: [
-      { id: 1, name: "Veb sahifalarni yaratish" },
-      { id: 2, name: "Kompilyator yaratish" },
-      { id: 3, name: "Kirish kodlari yaratish" },
-      { id: 4, name: "Tizimni test qilish" },
-    ],
-    correctAnswerId: 1,
-  },
-  {
-    id: 5,
-    Title: "CSS nimaga xizmat qiladi?",
-    variant: [
-      { id: 1, name: "Veb sahifani formatlash" },
-      { id: 2, name: "Veb sahifani test qilish" },
-      { id: 3, name: "Veb sahifa uchun kod yozish" },
-      { id: 4, name: "Veb sahifani optimallashtirish" },
-    ],
-    correctAnswerId: 1,
-  },
-  {
-    id: 6,
-    Title: "JSda 'var' va 'let' farqi nima?",
-    variant: [
-      { id: 1, name: "'var' global, 'let' esa lokal" },
-      { id: 2, name: "'let' global, 'var' esa lokal" },
-      { id: 3, name: "'var' va 'let' bir xil" },
-      { id: 4, name: "'let' funksiyada ishlatiladi" },
-    ],
-    correctAnswerId: 1,
-  },
-  {
-    id: 7,
-    Title: "Veb dasturlashda 'API' nimani anglatadi?",
-    variant: [
-      { id: 1, name: "Application Programming Interface" },
-      { id: 2, name: "Advanced Programming Interface" },
-      { id: 3, name: "Application Protocol Integration" },
-      { id: 4, name: "All Purpose Integration" },
-    ],
-    correctAnswerId: 1,
-  },
-  {
-    id: 8,
-    Title: "Git nima uchun ishlatiladi?",
-    variant: [
-      { id: 1, name: "Versiya boshqaruvi" },
-      { id: 2, name: "Veb sahifa yaratish" },
-      { id: 3, name: "Veb serverni sozlash" },
-      { id: 4, name: "Kompilyator yaratish" },
-    ],
-    correctAnswerId: 1,
-  },
-  {
-    id: 9,
-    Title: "Node.js nima?",
-    variant: [
-      { id: 1, name: "JavaScript server tarafida ishlash" },
-      { id: 2, name: "Python server tarafida ishlash" },
-      { id: 3, name: "JavaScript kutubxonasi" },
-      { id: 4, name: "Kompilyator" },
-    ],
-    correctAnswerId: 1,
-  },
-  {
-    id: 10,
-    Title: "UX/UI dizayn nima?",
-    variant: [
-      { id: 1, name: "Foydalanuvchi interfeysi va tajribasi dizayni" },
-      { id: 2, name: "Veb dasturlash texnologiyalari" },
-      { id: 3, name: "Web sahifa optimallashtirish" },
-      { id: 4, name: "Foydalanuvchi uchun backend dizayni" },
-    ],
-    correctAnswerId: 1,
-  },
-];
 
 function Quiz() {
+  const { QuizData,data } = UsePostQuiz();
+  console.log(data)
+
   const navigate = useNavigate();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState([]);
@@ -183,8 +86,8 @@ function Quiz() {
                     key={option.id}
                     onClick={() => handleAnswerSelect(option.id)}
                     className={`option w-full p-3 border border-gray-300 rounded-lg ${isSelected
-                        ? "bg-green-500 text-white" // Tanlangan variant uchun yashil rang
-                        : "bg-white hover:bg-blue-100"
+                      ? "bg-green-500 text-white" // Tanlangan variant uchun yashil rang
+                      : "bg-white hover:bg-blue-100"
                       } focus:outline-none`}
                   >
                     {option.name}

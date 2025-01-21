@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Modal, Input } from 'antd';
 const { TextArea } = Input;
-import { FaEye } from "react-icons/fa";
 import { NavLink, } from 'react-router-dom';
 import useFan from '../../../../Hooks/useFan';
 import AddFan from '../../../../Hooks/AddFan';
@@ -36,6 +35,7 @@ function Addlesson() {
                 <TextArea onChange={(e) => setDescription(e.target.value)} rows={4} maxLength={124} showCount className='mt-6' placeholder='Dars tasnifi' />
             </Modal>
             <h1 className='text-2xl font-semibold'>Mavjud Fanlar</h1>
+
             <div className='mt-6 grid lg:grid-cols-3 sm:grid-cols-2 gap-8 grid-cols-1 pb-12'>
                 <Button type="primary" className=' p-6 rounded-lg shadow-lg h-full' onClick={showModal}>
                     <span className='text-5xl text-white'><i className="fa-solid fa-plus"></i></span>
@@ -43,17 +43,17 @@ function Addlesson() {
 
                 {loading && <div className='loaderWindow'><div className='loader'></div></div>}
                 {fan?.map((i) => (
-                    <NavLink to={`/admin/${i.nomi}`}>
+                    <NavLink to={`/admin/${i.nomi}`} className=" verflow-hidden ">
                         <div key={i.nomi} className="card ">
                             <a className="card1" href="#">
-                                <p>{i.nomi}</p>
-                                <p className="small">{i.desc}</p>
+                                <p style={{lineHeight:"24px"}}>{i.nomi}</p>
+                                <p className="small ">{i.desc}</p>
                                 <div className='flex justify-between small items-center'>
                                     <p>{i.teacher}</p>
                                     {/* <p className='flex items-center gap-2 small'>{i.views} <span><FaEye /> </span></p> */}
                                 </div>
-                                <div className="go-corner" href="#">
-                                </div>
+                                {/* <div className="go-corner" href="#">
+                                </div> */}
                             </a>
                         </div>
                     </NavLink>

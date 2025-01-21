@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { getCookie } from './getCooce'
 export const instance = axios.create({
-    baseUrl: "http://localhost:5000"
+    baseUrl: "http://localhost:3000"
 })
 
 

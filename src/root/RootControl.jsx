@@ -10,6 +10,7 @@ import LessonTopic from "../componets/profile/AdminDoshboard/AdminLessons/Lesson
 import { getCookie } from "../Hooks/getCooce";
 import DarsUser from "../componets/profile/lessons/lesson/DarsUser";
 import Quiz from "../componets/Quiz/Quiz";
+import QuizAdmin from "../componets/profile/AdminDoshboard/AdminLessons/QuizAmin";
 
 
 const ProtectedRoute = ({ children, allowedRoles, token, role }) => {
@@ -90,6 +91,11 @@ function RootControl() {
                             <Quiz />
                         </ProtectedRoute>} />
 
+                        <Route path="/admin/:nomi/:dasrnomi/quizAmin"
+                    element={
+                        <ProtectedRoute token={token} role={role} allowedRoles={["admin"]}>
+                            <QuizAdmin />
+                        </ProtectedRoute>} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
         </BrowserRouter>
