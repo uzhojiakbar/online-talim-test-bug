@@ -40,10 +40,6 @@ const Dars = () => {
                         </div>
                     )}
                 </>}
-
-
-            {/* test chaqirish */}
-            {/* <QuizAdmin/> */}
         </div>
     );
 };

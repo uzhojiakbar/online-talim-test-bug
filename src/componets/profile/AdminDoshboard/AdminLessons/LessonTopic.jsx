@@ -28,11 +28,14 @@ function LessonTopic() {
 
 
 
+ 
   useEffect(() => {
-    if (fanMavzulari.length) {
+    if (!dasrnomi && fanMavzulari.length) {
       nav(`/admin/${fanMavzulari[0].fan}/${fanMavzulari[0].nomi}`);
     }
-  }, [fanMavzulari]);
+  }, [fanMavzulari, dasrnomi]);
+  
+
 
   const closeModal = (e) => {
     if (e.target.className === "bg-black/10 backdrop-blur-sm top-0 left-0 w-full h-full absolute z-[1000]") {

@@ -24,7 +24,7 @@ const Corusel = () => {
             <div className="max-md:text-center p-6">
               {ticherData.map((item) => {
                 return (
-                  <div key={item.id} className="border border-slate-500 rounded-sm py-6">
+                  <div key={item.id} className=" border-slate-500 rounded-sm py-6">
                     <h2 className="lg:text-5xl text-4xl font-semibold text-white">{item.name}</h2>
                     <p className="text-gray-500 mt-2">Fan : {item.fan}</p>
                     <p className="text-gray-500 mt-2">Tajriba {item.tajriba} yil</p>

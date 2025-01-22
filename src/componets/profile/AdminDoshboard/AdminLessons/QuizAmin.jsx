@@ -1,16 +1,18 @@
-import React, { useState } from "react";
-import AdminNav from '../AdminNav'
+import React, { useEffect, useState } from "react";
+import AdminNav from "../AdminNav";
+import { instance } from '../../../../Hooks/api'
+import { useParams } from "react-router-dom";
 const QuizAdmin = () => {
     const [quizzes, setQuizzes] = useState([]);
     const [newQuiz, setNewQuiz] = useState({
-        Title: "",
-        variant: [
+        title: "",
+        options: [
             { id: 1, name: "" },
             { id: 2, name: "" },
             { id: 3, name: "" },
-            { id: 4, name: "" },  // To'rtinchi variantni qo'shdik
+            { id: 4, name: "" },
         ],
-        correctAnswerId: "", // To'g'ri javob ID
+        correctOptionId: "",
     });
     const [error, setError] = useState("");
     const [editingQuizId, setEditingQuizId] = useState(null);
@@ -23,102 +25,83 @@ const QuizAdmin = () => {
         }));
     };
 
-    const handleVariantChange = (index, value) => {
+    const handleOptionChange = (index, value) => {
         setNewQuiz((prev) => {
-            const updatedVariants = [...prev.variant];
-            updatedVariants[index].name = value;
-            return { ...prev, variant: updatedVariants };
+            const updatedOptions = [...prev.options];
+            updatedOptions[index].name = value;
+            return { ...prev, options: updatedOptions };
         });
     };
 
-    const handleRadioChange = (variantId) => {
+    const handleSelectChange = (optionId) => {
         setNewQuiz((prev) => ({
             ...prev,
-            correctAnswerId: variantId,
+            correctOptionId: optionId,
         }));
     };
 
-    const addQuiz = () => {
-        const { Title, variant, correctAnswerId } = newQuiz;
-
-        if (!Title.trim()) {
-            setError("Test savoli kiritilmadi");
-            return;
-        }
-        if (variant.some((v) => !v.name.trim())) {
-            setError("Variant kiriting");
-            return;
-        }
-        if (!correctAnswerId) {
-            setError("To'g'ri javobni tanlang");
-            return;
-        }
-
-        const newQuizObj = {
-            ...newQuiz,
-            id: Date.now().toString(),
-        };
-
-        setQuizzes((prev) => [...prev, newQuizObj]);
-
-        setNewQuiz({
-            Title: "",
-            variant: [
-                { id: 1, name: "" },
-                { id: 2, name: "" },
-                { id: 3, name: "" },
-                { id: 4, name: "" }, // To'rtinchi variantni tozalash
-            ],
-            correctAnswerId: "",
-        });
-
-        setError("");
+    const validateQuiz = () => {
+        const { title, options, correctOptionId } = newQuiz;
+        if (!title.trim()) return "Savol matnini kiriting.";
+        if (options.some((opt) => !opt.name.trim())) return "Barcha variantlarni kiriting.";
+        if (!correctOptionId) return "To'g'ri javobni tanlang.";
+        return "";
     };
 
-    const updateQuiz = () => {
-        const { Title, variant, correctAnswerId } = newQuiz;
+    // Test qo'shish
+    const { nomi, dasrnomi } = useParams()
+    const addTest = async (newQuiz) => {
+        try {
+            const respone = await instance.post(`/api/test/${nomi}/${dasrnomi}`, newQuiz)
+            console.log(respone)
+        } catch (err) {
+            console.log('xatolik test qoshishda', err)
+        }
+    }
 
-        if (!Title.trim()) {
-            setError("Test savoli kiritilmadi");
+    useEffect(() => {
+        const getTest = async () => {
+            try {
+                const respone = instance.get(`/api/test/${nomi}/${dasrnomi}`)
+                console.log(respone.data, 'salom')
+            } catch (err) {
+                console.log('malumot olishda xatolik bor', err)
+            }
+        }
+        getTest()
+    }, [])
+
+    const saveQuiz = () => {
+        const validationError = validateQuiz();
+        if (validationError) {
+            setError(validationError);
             return;
         }
-        if (variant.some((v) => !v.name.trim())) {
-            setError("Variant kiriting");
-            return;
-        }
-        if (!correctAnswerId) {
-            setError("To'g'ri javobni tanlang");
-            return;
+        setError("");
+
+        if (editingQuizId) {
+            setQuizzes((prev) =>
+                prev.map((quiz) =>
+                    quiz.id === editingQuizId ? { ...quiz, ...newQuiz } : quiz
+                )
+            );
+            setEditingQuizId(null);
+        } else {
+            setQuizzes((prev) => [...prev, { ...newQuiz, id: Date.now().toString() }]);
         }
 
-        setQuizzes((prev) =>
-            prev.map((quiz) =>
-                quiz.id === editingQuizId
-                    ? { ...quiz, Title, variant, correctAnswerId }
-                    : quiz
-            )
-        );
-        setEditingQuizId(null);
-        setNewQuiz({
-            Title: "",
-            variant: [
-                { id: 1, name: "" },
-                { id: 2, name: "" },
-                { id: 3, name: "" },
-                { id: 4, name: "" }, // To'rtinchi variantni tozalash
-            ],
-            correctAnswerId: "",
-        });
+
+
+        addTest(newQuiz)
+
+
+        resetForm();
     };
 
     const editQuiz = (quizId) => {
-        const quizToEdit = quizzes.find((quiz) => quiz.id === quizId);
-        if (quizToEdit) {
-            setNewQuiz({
-                Title: quizToEdit.Title,
-                variant: [...quizToEdit.variant],
-                correctAnswerId: quizToEdit.correctAnswerId,
-            });
+        const quiz = quizzes.find((quiz) => quiz.id === quizId);
+        if (quiz) {
+            setNewQuiz(quiz);
             setEditingQuizId(quizId);
         }
     };
@@ -131,62 +114,74 @@ const QuizAdmin = () => {
         setQuizzes([]);
     };
 
-    const updateFunction = () => {
-        window.scrollTo(0, 0);
+    const resetForm = () => {
+        setNewQuiz({
+            title: "",
+            options: [
+                { id: 1, name: "" },
+                { id: 2, name: "" },
+                { id: 3, name: "" },
+                { id: 4, name: "" },
+            ],
+            correctOptionId: "",
+        });
+        setError("");
     };
 
     return (
         <>
             <AdminNav />
-            <div className="min-h-screen bg-white flex flex-col items-center py-10 px-4 pt-24 ">
-                <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Testlar</h1>
+            <div className="min-h-screen bg-white flex flex-col items-center py-10 px-4 pt-24">
+                <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">Testlar boshqaruvi</h1>
+
                 <div className="w-full max-w-4xl bg-gray-100 p-6 rounded-lg shadow-md">
                     <h2 className="text-xl font-semibold text-gray-700 mb-4">
                         {editingQuizId ? "Testni yangilash" : "Yangi test qo'shish"}
                     </h2>
                     {error && <p className="text-red-500 mb-4">{error}</p>}
+
                     <input
                         type="text"
-                        name="Title"
-                        placeholder="Test savoli"
-                        value={newQuiz.Title}
+                        name="title"
+                        placeholder="Savol matni"
+                        value={newQuiz.title}
                         onChange={handleChange}
                         className="border p-3 rounded w-full mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     />
-                    {newQuiz.variant.map((v, index) => (
-                        <div key={index} className="mb-4">
+
+                    {newQuiz.options.map((option, index) => (
+                        <div key={option.id} className="mb-4">
                             <input
                                 type="text"
                                 placeholder={`Variant ${index + 1}`}
-                                value={v.name}
-                                onChange={(e) => handleVariantChange(index, e.target.value)}
+                                value={option.name}
+                                onChange={(e) => handleOptionChange(index, e.target.value)}
                                 className="border p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                             />
                         </div>
                     ))}
 
-                    {/* To'g'ri javobni tanlash */}
                     <div className="mb-4">
-                        <p className="font-semibold text-gray-700">To'g'ri javob:</p>
+                        <p className="font-semibold text-gray-700">To'g'ri javobni tanlang:</p>
                         <select
-                            value={newQuiz.correctAnswerId}
-                            onChange={(e) => handleRadioChange(e.target.value)}
+                            value={newQuiz.correctOptionId}
+                            onChange={(e) => handleSelectChange(e.target.value)}
                             className="border p-3 rounded w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
-                            <option value="">To'g'ri javobni tanlang</option>
-                            {newQuiz.variant.map((v) => (
-                                <option key={v.id} value={v.id}>
-                                    {v.name}
+                            <option value="">Tanlang</option>
+                            {newQuiz.options.map((option) => (
+                                <option key={option.id} value={option.id}>
+                                    {option.name}
                                 </option>
                             ))}
                         </select>
                     </div>
 
                     <button
-                        onClick={editingQuizId ? updateQuiz : addQuiz}
+                        onClick={saveQuiz}
                         className="bg-blue-500 text-white px-6 py-3 rounded hover:bg-blue-600 transition w-full sm:w-auto"
                     >
-                        {editingQuizId ? "Saqlash" : "Qo'shish"}
+                        {editingQuizId ? "Yangilash" : "Qo'shish"}
                     </button>
                 </div>
 
@@ -197,22 +192,17 @@ const QuizAdmin = () => {
                     ) : (
                         quizzes.map((quiz) => (
                             <div key={quiz.id} className="bg-gray-100 border p-4 rounded-lg shadow mb-4">
-                                <h3 className="text-lg font-bold text-gray-800">{quiz.Title}</h3>
+                                <h3 className="text-lg font-bold text-gray-800">{quiz.title}</h3>
                                 <ul className="list-disc pl-5 text-gray-700">
-                                    {quiz.variant.map((v) => (
-                                        <li key={v.id}>
-                                            {v.id}. {v.name}
-                                        </li>
+                                    {quiz.options.map((option) => (
+                                        <li key={option.id}>{option.name}</li>
                                     ))}
                                 </ul>
-
                                 <p className="mt-2 text-gray-700">
-                                    <strong>To'g'ri javob:</strong> {quiz.correctAnswerId
-                                        ? quiz.variant.find((v) => v.id.toString() === quiz.correctAnswerId).id
-                                        : "Yoki belgilamagan"}
+                                    <strong>To'g'ri javob:</strong> {quiz.options.find((o) => o.id.toString() === quiz.correctOptionId)?.name || "Aniqlanmagan"}
                                 </p>
                                 <button
-                                    onClick={() => { editQuiz(quiz.id); updateFunction() }}
+                                    onClick={() => editQuiz(quiz.id)}
                                     className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 mt-4"
                                 >
                                     Yangilash
@@ -230,7 +220,8 @@ const QuizAdmin = () => {
 
                 <button
                     onClick={deleteAllQuizzes}
-                    className="bg-red-500 text-white px-6 py-3 rounded hover:bg-gray-600 mt-6">
+                    className="bg-red-500 text-white px-6 py-3 rounded hover:bg-red-600 mt-6"
+                >
                     Hammasini o'chirish
                 </button>
             </div>
