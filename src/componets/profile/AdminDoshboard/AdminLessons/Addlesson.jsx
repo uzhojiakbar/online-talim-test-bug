@@ -21,7 +21,9 @@ function Addlesson() {
     const { addFanFunction } = AddFan();
     const handleFormSubmit = (e) => {
         e.preventDefault();
+        
         addFanFunction(subjectName, description);
+        console.log(subjectName, description)
     };
 
 
@@ -29,10 +31,10 @@ function Addlesson() {
         <div>
             <Modal footer={[
                 <Button onClick={handleFormSubmit} type="primary" className='mt-6 py-4' block>
-                    Yangi fan qo'shish
+                    qo'shish
                 </Button>]} open={isModalOpen} onCancel={handleCancel}>
-                <Input onChange={(e) => setSubjectName(e.target.value)} placeholder="Basic usage" className='mt-8 py-2' />
-                <TextArea onChange={(e) => setDescription(e.target.value)} rows={4} maxLength={124} showCount className='mt-6' placeholder='Dars tasnifi' />
+                <Input onChange={(e) => setSubjectName(e.target.value)} placeholder="Fan nomi" className='mt-8 py-2' />
+                <TextArea onChange={(e) => setDescription(e.target.value)} rows={4} maxLength={512} showCount className='mt-6' placeholder='Fan tasnifi' />
             </Modal>
             <h1 className='text-2xl font-semibold'>Mavjud Fanlar</h1>
 
@@ -42,8 +44,8 @@ function Addlesson() {
                 </Button>
 
                 {loading && <div className='loaderWindow'><div className='loader'></div></div>}
-                {fan?.map((i) => (
-                    <NavLink to={`/admin/${i.nomi}`} className=" verflow-hidden ">
+                {fan?.map((i,index) => (
+                    <NavLink key={index} to={`/admin/${i.nomi}`} className=" verflow-hidden ">
                         <div key={i.nomi} className="card ">
                             <a className="card1" href="#">
                                 <p style={{lineHeight:"24px"}}>{i.nomi}</p>

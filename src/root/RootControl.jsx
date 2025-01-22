@@ -11,7 +11,6 @@ import DarsUser from "../componets/profile/lessons/lesson/DarsUser";
 import Quiz from "../componets/Quiz/Quiz";
 import QuizAdmin from "../componets/profile/AdminDoshboard/AdminLessons/QuizAmin";
 import Certificate from "../componets/profile/AdminDoshboard/AdminLessons/Certificate";
-import Scroltop from "../componets/Scroltop";
 
 // ProtectedRoute component for role-based access control
 const ProtectedRoute = ({ children, allowedRoles, token, role }) => {

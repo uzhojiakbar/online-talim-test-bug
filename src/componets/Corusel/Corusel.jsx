@@ -20,15 +20,11 @@ const Corusel = () => {
     <div id='ustozlar' data-aos="zoom-in " >
       <Slider  {...settings}>
         <div className="">
-          <div className="md:px-16 mx-auto w-full max-w-[1200px] rounded-lg overflow-hidden flex max-md:block items-center justify-between">
-            <div className="md:w-1/2 h-[400px] flex items-center justify-center relative overflow-hidden">
-              <img src={ticher} alt="Ustoz rasmi" className="w-[80%] rounded-full absolute md:-translate-y-14 max-sm:translate-y-12 object-cover" />
-            </div>
-
-            <div className="md:w-1/2 max-md:text-center p-6">
+          <div className=" mt-12 text-center  md:px-16 mx-auto rounded-lg ">
+            <div className="max-md:text-center p-6">
               {ticherData.map((item) => {
                 return (
-                  <div key={item.id}>
+                  <div key={item.id} className="border border-slate-500 rounded-sm py-6">
                     <h2 className="lg:text-5xl text-4xl font-semibold text-white">{item.name}</h2>
                     <p className="text-gray-500 mt-2">Fan : {item.fan}</p>
                     <p className="text-gray-500 mt-2">Tajriba {item.tajriba} yil</p>
@@ -39,17 +35,13 @@ const Corusel = () => {
             </div>
           </div>
         </div>
+
         <div className="">
-          <div className="md:px-16 mx-auto w-full max-w-[1200px] rounded-lg overflow-hidden flex max-md:block items-center justify-between">
-
-            <div className="md:w-1/2 h-[400px] flex items-center justify-center relative overflow-hidden">
-              <img src={ticher} alt="Ustoz rasmi" className="w-[80%] rounded-full absolute md:-translate-y-14 max-sm:translate-y-12 object-cover" />
-            </div>
-
-            <div className="md:w-1/2 max-md:text-center p-6">
+          <div className=" mt-12 text-center  md:px-16 mx-auto rounded-lg ">
+            <div className=" max-md:text-center p-6">
               {ticherData.map((item) => {
                 return (
-                  <div key={item.id}>
+                  <div key={item.id} className="border border-slate-500 rounded-sm py-6">
                     <h2 className="lg:text-5xl text-4xl font-semibold text-white">{item.name}</h2>
                     <p className="text-gray-500 mt-2">Fan : {item.fan}</p>
                     <p className="text-gray-500 mt-2">Tajriba {item.tajriba} yil</p>
@@ -60,16 +52,13 @@ const Corusel = () => {
             </div>
           </div>
         </div>
+      
         <div className="">
-          <div className="md:px-16 mx-auto w-full max-w-[1200px] rounded-lg overflow-hidden flex max-md:block items-center justify-between">
-            <div className="md:w-1/2 h-[400px] flex items-center justify-center relative overflow-hidden">
-              <img src={ticher} alt="Ustoz rasmi" className="w-[80%] rounded-full absolute md:-translate-y-14 max-sm:translate-y-12 object-cover" />
-            </div>
-
-            <div className="md:w-1/2 max-md:text-center p-6">
+          <div className=" mt-12 text-center  md:px-16 mx-auto rounded-lg ">  
+            <div className=" max-md:text-center p-6">
               {ticherData.map((item) => {
                 return (
-                  <div key={item.id}>
+                  <div key={item.id} className="border border-slate-500 rounded-sm py-6">
                     <h2 className="lg:text-5xl text-4xl font-semibold text-white">{item.name}</h2>
                     <p className="text-gray-500 mt-2">Fan : {item.fan}</p>
                     <p className="text-gray-500 mt-2">Tajriba {item.tajriba} yil</p>
@@ -80,16 +69,13 @@ const Corusel = () => {
             </div>
           </div>
         </div>
+        
         <div className="">
-          <div className="md:px-16 mx-auto w-full max-w-[1200px] rounded-lg overflow-hidden flex max-md:block items-center justify-between">
-            <div className="md:w-1/2 h-[400px] flex items-center justify-center relative overflow-hidden">
-              <img src={ticher} alt="Ustoz rasmi" className="w-[80%] rounded-full absolute md:-translate-y-14 max-sm:translate-y-12 object-cover" />
-            </div>
-
-            <div className="md:w-1/2 max-md:text-center p-6">
+          <div className=" mt-12 text-center  md:px-16 mx-auto rounded-lg ">
+            <div className=" max-md:text-center p-6">
               {ticherData.map((item) => {
                 return (
-                  <div key={item.id}>
+                  <div key={item.id} className="border border-slate-500 rounded-sm py-6">
                     <h2 className="lg:text-5xl text-4xl font-semibold text-white">{item.name}</h2>
                     <p className="text-gray-500 mt-2">Fan : {item.fan}</p>
                     <p className="text-gray-500 mt-2">Tajriba {item.tajriba} yil</p>

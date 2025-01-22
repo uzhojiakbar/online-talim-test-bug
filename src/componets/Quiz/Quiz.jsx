@@ -11,7 +11,7 @@ const QuizUser = () => {
   const [score, setScore] = useState(0);
   const [attemptsLeft, setAttemptsLeft] = useState(2);
   const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
-  const { nomi, dasrnomi } = useParams()
+  const { nomi, dasrnomi } = useParams();
   const quizzes = [
     {
       id: "1",
@@ -43,6 +43,10 @@ const QuizUser = () => {
   };
 
   const handleNextQuiz = () => {
+    if (!userAnswers[quizzes[currentQuizIndex].id]) {
+      alert("Iltimos, savolga javob bering!");
+      return;
+    }
     if (currentQuizIndex < quizzes.length - 1) {
       setCurrentQuizIndex((prevIndex) => prevIndex + 1);
     } else {
@@ -84,12 +88,12 @@ const QuizUser = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center py-10 px-4">
-      <h1 className="text-3xl font-bold text-gray-800 mb-4"> Fan: {nomi}</h1>
-      <h1 className="text-3xl font-bold text-gray-800 mb-8">Dars: {dasrnomi}</h1>
+      <h1 className="text-2xl font-bold text-gray-700 mb-4"> Fan: {nomi}</h1>
+      <h1 className="text-2xl font-bold text-gray-700 mb-8">Dars: {dasrnomi}</h1>
 
       {isSubmitted ? (
         <div className="text-center">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+          <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             Natija: {score} / {quizzes.length} ({correctPercentage}%)
           </h2>
           <div className="w-1/2 mx-auto mb-6">
@@ -114,25 +118,27 @@ const QuizUser = () => {
             <h3 className="text-lg font-bold text-gray-800 mb-2">
               Savol {currentQuizIndex + 1} / {quizzes.length}
             </h3>
-            <h4 className="text-lg font-semibold text-gray-700">
+            <h4 className="text-lg font-semibold mb-3 text-gray-700">
               {quizzes[currentQuizIndex].Title}
             </h4>
-            <ul className="list-disc pl-5 text-gray-700">
+            <ul className="list-none p-0">
               {quizzes[currentQuizIndex].variant.map((v) => (
-                <li key={v.id}>
-                  <label className="flex items-center">
-                    <input
-                      type="radio"
-                      name={`quiz-${quizzes[currentQuizIndex].id}`}
-                      value={v.id}
-                      checked={
-                        userAnswers[quizzes[currentQuizIndex].id] === v.id.toString()
-                      }
-                      onChange={() =>
-                        handleAnswerChange(v.id.toString())
-                      }
-                      className="mr-2"
-                    />
+                <li key={v.id} className="flex items-center mb-4">
+                  <input
+                    type="radio"
+                    id={`quiz-${quizzes[currentQuizIndex].id}-${v.id}`}
+                    name={`quiz-${quizzes[currentQuizIndex].id}`}
+                    value={v.id}
+                    checked={
+                      userAnswers[quizzes[currentQuizIndex].id] === v.id.toString()
+                    }
+                    onChange={() => handleAnswerChange(v.id.toString())}
+                    className="w-4 h-4 text-green-500 focus:ring-green-500 border-gray-300 rounded-full transition duration-200 mr-3"
+                  />
+                  <label
+                    htmlFor={`quiz-${quizzes[currentQuizIndex].id}-${v.id}`}
+                    className="text-gray-700 cursor-pointer"
+                  >
                     {v.name}
                   </label>
                 </li>
@@ -141,7 +147,8 @@ const QuizUser = () => {
           </div>
           <button
             onClick={handleNextQuiz}
-            className="bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition mt-6"
+            disabled={!userAnswers[quizzes[currentQuizIndex].id]}
+            className={`bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition mt-6 ${!userAnswers[quizzes[currentQuizIndex].id] ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             Keyingisiga o'tish
           </button>

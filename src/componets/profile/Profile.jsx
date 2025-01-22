@@ -1,6 +1,6 @@
 import React from 'react'
 import ProfileNavbar from './Navbar/ProfileNavbar'
-import cat from '../../assets/profileImg/cat.jpg'
+import cat from '../../assets/profileImg/user.png'
 import Footer from '../Footer/Footer'
 import Leson from './lessons/Lesons'
 function Profile() {

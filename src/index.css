@@ -284,7 +284,7 @@ body{
 }
 
 .card1:hover:before {
-  transform: scale(30);
+  transform: scale(60);
 }
 
 .card1:hover p {
@@ -626,3 +626,9 @@ iframe {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+.bgimg{
+  background-image: url('./assets/nammqi.jpg');
+  background-size: cover;
+}
+

@@ -7,7 +7,7 @@ const Dars = () => {
     const { topicData, load, mavZuMalumotlari } = MavzuData()
 
     useEffect(() => {
-        mavZuMalumotlari(nomi,darsnomi);
+        mavZuMalumotlari(nomi, darsnomi);
     }, [darsnomi]);
 
     return (
@@ -25,23 +25,25 @@ const Dars = () => {
                     />
                 </div>
             )}
-            {!load && (
-                <div className="bg-white p-4 rounded-lg space-y-2">
-                    <h1 className="text-xl">{topicData.name}</h1>
-                    <h1>{topicData.desc}</h1>
-                    <div className="iframevid">
-                        <div className=""
-                            id="embedContainer"
-                            dangerouslySetInnerHTML={{ __html: topicData.embed, }}
-                        >
+            {!topicData.name ? <h1 className="text-slate-800 ">Darslar hozircha mavjud emas 😔</h1> :
+                <>
+                    {!load && (
+                        <div className="bg-white p-4 rounded-lg space-y-2">
+                            <h1 className="text-xl">{topicData.name}</h1>
+                            {<h1>{topicData.desc}</h1>}
+                            <div className="iframevid">
+                                <div className=""
+                                    id="embedContainer"
+                                    dangerouslySetInnerHTML={{ __html: topicData.embed, }}>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            )}
-          
+                    )}
+                </>}
 
-          {/* test chaqirish */}
-          {/* <QuizAdmin/> */}
+
+            {/* test chaqirish */}
+            {/* <QuizAdmin/> */}
         </div>
     );
 };

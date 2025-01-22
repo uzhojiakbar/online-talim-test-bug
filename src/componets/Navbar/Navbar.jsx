@@ -31,7 +31,8 @@ function Navbar() {
 
 
     return (
-        <div data-aos="filip-left" className={`border-b border-slate-600 backdrop-blur-lg text-white flex top-0 left-0 z-50 fixed w-full  py-4 lg:px-16 sm:px-6 px-3 justify-between items-center`}>
+        <div data-aos="filip-left" className={`border-b border-slate-600 backdrop-blur-lg text-white flex top-0 left-0 z-50 fixed w-full  py-4 lg:px-16 sm:px-6 px-3 justify-between items-center bg-black/30`}>
+
             <h1 className='text-3xl font-bold'>Att</h1>
 
             <div className='md:flex hidden gap-6 '>

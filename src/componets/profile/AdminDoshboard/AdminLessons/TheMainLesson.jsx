@@ -68,7 +68,6 @@ function TheMainLesson() {
   };
 
   // Delete mavzu
-  const { delTopic } = usedelTopic();
 
   // Ma'lumotlar kelmaguncha formani rendermaslik
   if (!topicData) {
@@ -120,17 +119,6 @@ function TheMainLesson() {
           <div>Tahrirlash</div>
         </Button>
 
-        <Button onClick={() => delTopic(nomi, topicData?.name)}
-          style={{
-            display: "flex",
-            gap: "10px",
-            alignItems: "center",
-          }}
-        >
-          <div className="fa-solid text-[16px] fa-trash text-[red]"></div>
-          <div>Darsni o'chirish</div>
-        </Button>
-
 
         <Button
         
@@ -154,7 +142,7 @@ function TheMainLesson() {
       ]} open={isModalOpen} onCancel={handleCancel}>
         <Input onChange={onchange} name="name" placeholder="Mavzu nomi" className="mt-8 py-2" />
         <Input onChange={onchange} name="embed" placeholder="Link" className="mt-8 py-2" />
-        <TextArea onChange={onchange} name="desc" rows={4} maxLength={124} showCount className="mt-6" placeholder="Dars tasnifi" />
+        <TextArea onChange={onchange} name="desc" rows={4} maxLength={1024} showCount className="mt-6" placeholder="Dars tasnifi" />
       </Modal>
 
 
@@ -182,19 +170,13 @@ function TheMainLesson() {
           onChange={updatechange}
           name="desc"
           rows={4}
-          maxLength={124}
+          maxLength={1024}
           showCount
           className="mt-6"
           placeholder="Dars tasnifi"
           defaultValue={updateData?.desc || ''} // defaultValue ishlatish
         />
       </Modal>
-
-
-
-
-     
-
       <Dars />
     </div>
   );

@@ -1,10 +1,8 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import { useFan } from '../../../Hooks/useFan'
-import ScrollToTop from '../../Scroltop';
 
 function Leson() {
-
     const { fan, setFan } = useFan();
     return (
         <div className="px-3 sm:px-6 md:px-12 mt-6 grid lg:grid-cols-3 gap-8 sm:grid-cols-2 grid-cols-1">
