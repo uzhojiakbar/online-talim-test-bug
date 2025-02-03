@@ -177,6 +177,8 @@ function TheMainLesson() {
           defaultValue={updateData?.desc || ''} // defaultValue ishlatish
         />
       </Modal>
+
+      {/* ENG ASOSIY QISM */}
       <Dars />
     </div>
   );

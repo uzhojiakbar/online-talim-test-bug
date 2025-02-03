@@ -53,7 +53,7 @@ function RootControl() {
                     }
                 />
                 <Route
-                    path="/admin/:nomi"
+                    path="/admin/:nomi/"
                     element={
                         <ProtectedRoute token={token} role={role} allowedRoles={["admin"]}>
                             <LessonTopic />

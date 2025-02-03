@@ -7,6 +7,10 @@ const Dars = () => {
     const { topicData, load, mavZuMalumotlari } = MavzuData()
 
     useEffect(() => {
+        console.log("SADSADASD");
+        console.log(darsnomi);
+        
+        
         mavZuMalumotlari(nomi, darsnomi);
     }, [darsnomi]);
 

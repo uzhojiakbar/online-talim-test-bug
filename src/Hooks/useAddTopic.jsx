@@ -8,6 +8,7 @@ export function useAddTopic() {
             const response = await instance.get(`/api/topic/${fanNomi}`)
             setFanMavzulari(response.data)
         } catch (error) {
+            console.log(error.response.status);
             console.error("fanni  olishda xatolik", error)
         }
     }

@@ -6,11 +6,11 @@ import { delFan } from '../../../../Hooks/delFan';
 import { ThreeCircles } from 'react-loader-spinner';
 import AdminNav from '../AdminNav';
 import TheMainLesson from './TheMainLesson';
-import { Button, Modal } from 'antd';
+import { Button, message, Modal } from 'antd';
 import usedelTopic from '../../../../Hooks/usedelTopic';
 
 function LessonTopic() {
-  const { nomi, dasrnomi } = useParams();
+  const { nomi, darsnomi } = useParams();
   const { fan, loading } = useFan();
   const { addTopics, fanMavzulari } = useAddTopic();
   const { deleteDars } = delFan();
@@ -18,22 +18,32 @@ function LessonTopic() {
 
   const nav = useNavigate();
 
+
+
   useEffect(() => {
     addTopics(nomi);
     setTimeout(() => {
-      nav(`/admin/${fanMavzulari[0].fan}/${fanMavzulari[0].nomi}`);
+      console.log("FAAAAAAAAAAAAAAAAAAAAAAN");
+      
+      console.log(fan);
+      
+      console.log(darsnomi);
+      if(!darsnomi?.length){
+        nav(`/admin/${fanMavzulari[0].fan}/${fanMavzulari[0].nomi}`);
+      }
+
     }, 1000);
-  }, []);
+  }, [fan,darsnomi]);
 
 
 
 
  
-  useEffect(() => {
-    if (!dasrnomi && fanMavzulari.length) {
-      nav(`/admin/${fanMavzulari[0].fan}/${fanMavzulari[0].nomi}`);
-    }
-  }, [fanMavzulari, dasrnomi]);
+  // useEffect(() => {
+  //   if (!dasrnomi && fanMavzulari.length) {
+  //     nav(`/admin/${fanMavzulari[0].fan}/${fanMavzulari[0].nomi}`);
+  //   }
+  // }, [fanMavzulari, dasrnomi]);
   
 
 
@@ -114,7 +124,7 @@ function LessonTopic() {
                   isActive ? "border-b block p-1 px-3 rounded-sm bg-indigo-500 text-white" : "border-b block p-1 px-3 rounded-sm hover:bg-indigo-500 hover:text-white"
                 }
                 // className=''
-                onClick={() => handleTopicClick(i)}  // Adding onClick to handle topic click logic
+                // onClick={() => handleTopicClick(i)}  // Adding onClick to handle topic click logic
               >
                 <div className='flex'>
                   <p className='w-full truncate'>{i.nomi}</p>
@@ -146,7 +156,7 @@ function LessonTopic() {
         </div>
       </div>
 
-      <TheMainLesson />
+      <TheMainLesson  />
     </div>
   );
 }
