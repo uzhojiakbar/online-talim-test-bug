@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ThreeCircles } from "react-loader-spinner";
 import MavzuData from "../../../../Hooks/MavzuData";
+import useGetTests from "../../../../Hooks/useGetTests";
 const Dars = () => {
     const { nomi, darsnomi } = useParams();
     const { topicData, load, mavZuMalumotlari } = MavzuData()
-
     useEffect(() => {
-        console.log("SADSADASD");
-        console.log(darsnomi);
-        
-        
         mavZuMalumotlari(nomi, darsnomi);
     }, [darsnomi]);
+
+
+    const {data} = useGetTests();
+    console.log(data)
+
 
     return (
         <div className="mt-6 overflow-hidden">
@@ -45,6 +46,7 @@ const Dars = () => {
                     )}
                 </>}
         </div>
+
     );
 };
 

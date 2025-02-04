@@ -4,7 +4,6 @@ export const instance = axios.create({
     baseUrl: "http://localhost:3000"
 })
 
-
 instance.interceptors.request.use(
     (config) => {
         const token = getCookie("token");

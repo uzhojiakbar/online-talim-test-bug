@@ -18,16 +18,11 @@ function LessonTopic() {
 
   const nav = useNavigate();
 
-
-
   useEffect(() => {
     addTopics(nomi);
     setTimeout(() => {
-      console.log("FAAAAAAAAAAAAAAAAAAAAAAN");
       
-      console.log(fan);
       
-      console.log(darsnomi);
       if(!darsnomi?.length){
         nav(`/admin/${fanMavzulari[0].fan}/${fanMavzulari[0].nomi}`);
       }
