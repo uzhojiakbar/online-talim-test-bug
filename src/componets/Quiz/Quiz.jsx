@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { useParams } from "react-router-dom";
+import UseGetTest from "../../Hooks/useGetTests";
+import ProfileNavbar from "../profile/Navbar/ProfileNavbar";
+import { instance } from "../../Hooks/api";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -10,40 +13,25 @@ const QuizUser = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [score, setScore] = useState(0);
   const [attemptsLeft, setAttemptsLeft] = useState(2);
-  const [currentQuizIndex, setCurrentQuizIndex] = useState(0);
+  const [currentQuizIndex, setCurrentQuizIndex] = useState(0);  // 0-dan boshlanadi
+
   const { nomi, dasrnomi } = useParams();
-  const quizzes = [
-    {
-      id: "1",
-      Title: "Qaysi biri dasturlash tili?",
-      variant: [
-        { id: "1", name: "HTML" },
-        { id: "2", name: "CSS" },
-        { id: "3", name: "JavaScript" },
-      ],
-      correctAnswerId: "3",
-    },
-    {
-      id: "2",
-      Title: "React nima uchun ishlatiladi?",
-      variant: [
-        { id: "1", name: "Server yaratish" },
-        { id: "2", name: "Frontend yaratish" },
-        { id: "3", name: "Ma'lumotlar bazasini boshqarish" },
-      ],
-      correctAnswerId: "2",
-    },
-  ];
+  const { getTest, getQuizzes: quizzes } = UseGetTest();
+
+  // Testlarni yuklash
+  useEffect(() => {
+    getTest(nomi, dasrnomi);  // API orqali testlarni olib keladi
+  }, [nomi, dasrnomi]);
 
   const handleAnswerChange = (selectedVariantId) => {
     setUserAnswers((prev) => ({
       ...prev,
-      [quizzes[currentQuizIndex].id]: selectedVariantId,
+      [quizzes[currentQuizIndex]?.id]: selectedVariantId,
     }));
   };
 
   const handleNextQuiz = () => {
-    if (!userAnswers[quizzes[currentQuizIndex].id]) {
+    if (!userAnswers[quizzes[currentQuizIndex]?.id]) {
       alert("Iltimos, savolga javob bering!");
       return;
     }
@@ -54,26 +42,29 @@ const QuizUser = () => {
     }
   };
 
-  const handleSubmit = () => {
-    let correctAnswers = 0;
-    quizzes.forEach((quiz) => {
-      if (userAnswers[quiz.id] === quiz.correctAnswerId) {
-        correctAnswers++;
-      }
-    });
-    setScore(correctAnswers);
-    setIsSubmitted(true);
-    setAttemptsLeft((prev) => prev - 1);
+  // Javoblarni backendga yuborish va natijani qaytarish
+  const handleSubmit = async () => {
+    try {
+      const response = await instance.post(
+        `/api/test/${nomi}/${dasrnomi}/check-answers`,
+        { answers: userAnswers }
+      );
+      setScore(response.data.correctAnswers);
+      setIsSubmitted(true);
+    } catch (err) {
+      console.error("Error submitting quiz answers:", err);
+    }
   };
 
   const handleRetry = () => {
     setUserAnswers({});
     setIsSubmitted(false);
     setScore(0);
+    setAttemptsLeft((prev) => prev - 1);
     setCurrentQuizIndex(0);
   };
 
-  const correctPercentage = Math.floor((score / quizzes.length) * 100);
+  const correctPercentage = quizzes.length ? Math.floor((score / quizzes.length) * 100) : 0;
 
   const chartData = {
     labels: ["To'g'ri", "Noto'g'ri"],
@@ -88,10 +79,13 @@ const QuizUser = () => {
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center py-10 px-4">
+      <ProfileNavbar />
       <h1 className="text-2xl font-bold text-gray-700 mb-4"> Fan: {nomi}</h1>
       <h1 className="text-2xl font-bold text-gray-700 mb-8">Dars: {dasrnomi}</h1>
 
-      {isSubmitted ? (
+      {quizzes.length === 0 ? (
+        <p className="text-gray-700 text-xl">Savollar yuklanmoqda...</p>
+      ) : isSubmitted ? (
         <div className="text-center">
           <h2 className="text-2xl font-semibold text-gray-700 mb-4">
             Natija: {score} / {quizzes.length} ({correctPercentage}%)
@@ -119,24 +113,23 @@ const QuizUser = () => {
               Savol {currentQuizIndex + 1} / {quizzes.length}
             </h3>
             <h4 className="text-lg font-semibold mb-3 text-gray-700">
-              {quizzes[currentQuizIndex].Title}
+              {quizzes[currentQuizIndex]?.title}
             </h4>
+
             <ul className="list-none p-0">
-              {quizzes[currentQuizIndex].variant.map((v) => (
+              {quizzes[currentQuizIndex]?.variant?.map((v) => (
                 <li key={v.id} className="flex items-center mb-4">
                   <input
                     type="radio"
-                    id={`quiz-${quizzes[currentQuizIndex].id}-${v.id}`}
-                    name={`quiz-${quizzes[currentQuizIndex].id}`}
+                    id={`quiz-${quizzes[currentQuizIndex]?.id}-${v.id}`}
+                    name={`quiz-${quizzes[currentQuizIndex]?.id}`}
                     value={v.id}
-                    checked={
-                      userAnswers[quizzes[currentQuizIndex].id] === v.id.toString()
-                    }
+                    checked={userAnswers[quizzes[currentQuizIndex]?.id] === v.id.toString()}
                     onChange={() => handleAnswerChange(v.id.toString())}
                     className="w-4 h-4 text-green-500 focus:ring-green-500 border-gray-300 rounded-full transition duration-200 mr-3"
                   />
                   <label
-                    htmlFor={`quiz-${quizzes[currentQuizIndex].id}-${v.id}`}
+                    htmlFor={`quiz-${quizzes[currentQuizIndex]?.id}-${v.id}`}
                     className="text-gray-700 cursor-pointer"
                   >
                     {v.name}
@@ -147,8 +140,8 @@ const QuizUser = () => {
           </div>
           <button
             onClick={handleNextQuiz}
-            disabled={!userAnswers[quizzes[currentQuizIndex].id]}
-            className={`bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition mt-6 ${!userAnswers[quizzes[currentQuizIndex].id] ? "opacity-50 cursor-not-allowed" : ""}`}
+            disabled={!userAnswers[quizzes[currentQuizIndex]?.id]}
+            className={`bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition mt-6 ${!userAnswers[quizzes[currentQuizIndex]?.id] ? "opacity-50 cursor-not-allowed" : ""}`}
           >
             Keyingisiga o'tish
           </button>

@@ -106,6 +106,8 @@ const QuizAdmin = () => {
         }
     };
 
+    
+
     return (
         <>
             <AdminNav />
@@ -177,9 +179,11 @@ const QuizAdmin = () => {
                                     ))}
                                 </ul>
                                 <p className="mt-2 text-gray-700">
-                                    <strong>To'g'ri javob:</strong>{" "}
-                                    {quiz.variant.find((o) => o.id.toString() === quiz.correctOption)?.name || "Aniqlanmagan"}
+                                    {/* <strong>To'g'ri javob:</strong>{" "}
+                                   
+                                    {quiz.variant.find((o) => o.id.toString() === quiz.correctOption)?.name || "Aniqlanmagan"} */}
                                 </p>
+
                                 <button
                                     onClick={() => startEditingTest(quiz)}
                                     className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 mt-4"

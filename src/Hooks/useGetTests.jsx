@@ -7,11 +7,10 @@ const UseGetTest = () => {
         try {
             const response = await instance.get(`/api/test/${nomi}/${dasrnomi}`);
             setQuizzes(response.data);
-            console.log(response.data)
         } catch (err) {
             console.error("Ma'lumot olishda xatolik bor", err);
         }
     };
-    return ({ getTest,getQuizzes })
+    return ({ getTest, getQuizzes, setQuizzes })
 }
 export default UseGetTest;

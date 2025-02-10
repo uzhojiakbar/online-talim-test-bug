@@ -12,8 +12,6 @@ const Dars = () => {
 
 
     const {data} = useGetTests();
-    console.log(data)
-
 
     return (
         <div className="mt-6 overflow-hidden">

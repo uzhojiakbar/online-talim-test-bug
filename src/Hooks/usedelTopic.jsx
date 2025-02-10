@@ -4,7 +4,6 @@ function usedelTopic() {
     console.log(nomi,mavzu)
     try {
       const response = await instance.delete(`/api/topic/${nomi}/${mavzu}`)
-      console.log(response.data)
       window.location.reload();
     } catch (error) {
       console.error("dars o'chirishda xatolik", error)
