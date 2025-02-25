@@ -9,10 +9,6 @@ const Dars = () => {
     useEffect(() => {
         mavZuMalumotlari(nomi, darsnomi);
     }, [darsnomi]);
-
-
-    const {data} = useGetTests();
-
     return (
         <div className="mt-6 overflow-hidden">
             {load && (
@@ -44,7 +40,6 @@ const Dars = () => {
                     )}
                 </>}
         </div>
-
     );
 };
 

@@ -39,6 +39,7 @@ function DarsUser() {
     }
   }, [darsnomi]);
 
+
   const mavZuMalumotlari = async (darsnomi) => {
     setLoad(true);
     try {
@@ -50,6 +51,7 @@ function DarsUser() {
       setLoad(false);
     }
   };
+  localStorage.setItem("finish", (data?.isFinish))
 
   return (
     <Layout className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-700 text-white">
@@ -111,7 +113,7 @@ function DarsUser() {
         <div className="space-y-4 ">
           {fanMavzulari.length > 0 ? (
             fanMavzulari?.map((item) => (
-              <NavLink 
+              <NavLink
                 onClick={() => {
                   mavZuMalumotlari(item.nomi);
                   setDrawerVisible(false);
@@ -169,8 +171,7 @@ function DarsUser() {
                   <NavLink
                     to={darsnomi ? `/profile/${nomi}/${darsnomi}/quiz` : "#"}
                     className={`bg-blue-600 px-6 py-2 text-white rounded-sm ml-1 mt-3 hover:bg-blue-600 cursor-pointer ${!darsnomi ? "cursor-not-allowed opacity-50" : ""
-                      }`}
-                  >
+                      }`}>
                     Testga o'tish
                   </NavLink>
                 </div>

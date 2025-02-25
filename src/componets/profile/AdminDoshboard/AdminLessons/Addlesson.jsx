@@ -26,7 +26,6 @@ function Addlesson() {
         e.preventDefault();
 
         addFanFunction(subjectName, description);
-        console.log(subjectName, description);
         setIsModalOpen(false); // Modalni yopish
     };
 

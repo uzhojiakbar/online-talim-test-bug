@@ -4,7 +4,6 @@ import { useFan } from '../../../Hooks/useFan'
 
 function Leson() {
     const { fan, setFan } = useFan();
-    console.log(fan);
     
     return (
         <div className="px-3 sm:px-6 md:px-12 mt-6 grid lg:grid-cols-3 gap-8 sm:grid-cols-2 grid-cols-1">

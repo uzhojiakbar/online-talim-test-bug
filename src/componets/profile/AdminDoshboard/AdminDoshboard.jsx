@@ -22,11 +22,9 @@ const AdminPage = () => {
   }, []);
 
   const handleRoleChange = async (username, role) => {
-    console.log(username, role)
     try {
       const response = await instance.put(`/api/users/${username}`, { role })
       setSelectedRole(response.data.role)
-      console.log(response.data.role)
     }
     catch (err) {
       console.log('yangiilashda hatoli keldiu', err)

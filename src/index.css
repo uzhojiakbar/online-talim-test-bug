@@ -632,3 +632,6 @@ iframe {
   background-size: cover;
 }
 
+.gradinet{
+  background:linear-gradient(45deg,red,blue) ;
+}

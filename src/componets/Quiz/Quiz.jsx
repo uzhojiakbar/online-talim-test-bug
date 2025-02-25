@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import UseGetTest from "../../Hooks/useGetTests";
 import ProfileNavbar from "../profile/Navbar/ProfileNavbar";
 import { instance } from "../../Hooks/api";
+import Certificate from "../profile/AdminDoshboard/AdminLessons/Certificate";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -15,7 +16,7 @@ const QuizUser = () => {
   const [attemptsLeft, setAttemptsLeft] = useState(2);
   const [currentQuizIndex, setCurrentQuizIndex] = useState(0);  // 0-dan boshlanadi
 
-  const { nomi, dasrnomi } = useParams();
+  const { nomi, dasrnomi} = useParams();
   const { getTest, getQuizzes: quizzes } = UseGetTest();
 
   // Testlarni yuklash
@@ -29,6 +30,8 @@ const QuizUser = () => {
       [quizzes[currentQuizIndex]?.id]: selectedVariantId,
     }));
   };
+
+  const finish = JSON.parse(localStorage.getItem('finish'))
 
   const handleNextQuiz = () => {
     if (!userAnswers[quizzes[currentQuizIndex]?.id]) {
@@ -141,12 +144,14 @@ const QuizUser = () => {
           <button
             onClick={handleNextQuiz}
             disabled={!userAnswers[quizzes[currentQuizIndex]?.id]}
-            className={`bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition mt-6 ${!userAnswers[quizzes[currentQuizIndex]?.id] ? "opacity-50 cursor-not-allowed" : ""}`}
-          >
+            className={`bg-green-500 text-white px-6 py-3 rounded hover:bg-green-600 transition mt-6 ${!userAnswers[quizzes[currentQuizIndex]?.id] ? "opacity-50 cursor-not-allowed" : ""}`}>
             Keyingisiga o'tish
           </button>
         </div>
       )}
+      {
+        finish && correctPercentage >= 70 ? <Certificate correctPercentage={correctPercentage} fannomi={nomi} /> : ""
+      }
     </div>
   );
 };
