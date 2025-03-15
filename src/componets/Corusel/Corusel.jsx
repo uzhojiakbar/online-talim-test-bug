@@ -22,7 +22,7 @@ const Corusel = () => {
         <div className="">
           <div className=" mt-12 text-center  md:px-16 mx-auto rounded-lg ">
             <div className="max-md:text-center p-6">
-              {ticherData.map((item) => {
+              {ticherData?.map((item) => {
                 return (
                   <div key={item.id} className=" border-slate-500 rounded-sm py-6">
                     <h2 className="lg:text-5xl text-4xl font-semibold text-white">{item.name}</h2>
@@ -39,7 +39,7 @@ const Corusel = () => {
         <div className="">
           <div className=" mt-12 text-center  md:px-16 mx-auto rounded-lg ">
             <div className=" max-md:text-center p-6">
-              {ticherData.map((item) => {
+              {ticherData?.map((item) => {
                 return (
                   <div key={item.id} className="border border-slate-500 rounded-sm py-6">
                     <h2 className="lg:text-5xl text-4xl font-semibold text-white">{item.name}</h2>
@@ -56,7 +56,7 @@ const Corusel = () => {
         <div className="">
           <div className=" mt-12 text-center  md:px-16 mx-auto rounded-lg ">  
             <div className=" max-md:text-center p-6">
-              {ticherData.map((item) => {
+              {ticherData?.map((item) => {
                 return (
                   <div key={item.id} className="border border-slate-500 rounded-sm py-6">
                     <h2 className="lg:text-5xl text-4xl font-semibold text-white">{item.name}</h2>
@@ -73,7 +73,7 @@ const Corusel = () => {
         <div className="">
           <div className=" mt-12 text-center  md:px-16 mx-auto rounded-lg ">
             <div className=" max-md:text-center p-6">
-              {ticherData.map((item) => {
+              {ticherData?.map((item) => {
                 return (
                   <div key={item.id} className="border border-slate-500 rounded-sm py-6">
                     <h2 className="lg:text-5xl text-4xl font-semibold text-white">{item.name}</h2>
