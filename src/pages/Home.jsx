@@ -8,7 +8,7 @@ function Home() {
     <div>
       <Navbar/>
       <Headers/>
-       {/* <Homesection1/> */}
+       <Homesection1/>
       <Footer/> 
     </div>
   )

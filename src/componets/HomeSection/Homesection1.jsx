@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 import att_logo from '../../assets/att_logo.png';
 import useFan from '../../Hooks/useFan';
 import { NavLink } from 'react-router-dom';
 
 function Homesection1() {
-    useEffect(() => {
-        AOS.init({ duration: 1000 });
-    }, []);
     const { fan } = useFan();
     return (
         <div id="darslar" className="lg:p-16 px-4 overflow-hidden">
