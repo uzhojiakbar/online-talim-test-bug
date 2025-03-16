@@ -14,12 +14,6 @@ function Navbar() {
       name: "Darslar",
       path: "#darslar",
     },
-  
-    // {
-    //     id: 4,
-    //     name: 'Blog',
-    //     path: '/'
-    // },
   ]);
 
   const [openForm, setOpenForm] = useState(false);
@@ -69,7 +63,7 @@ function Navbar() {
                 className="cursor-pointer  py-1 px-3 rounded-sm hover:bg-slate-800"
                 key={item?.id}
               >
-                <a href={item?.manzil}>{item?.name}</a>
+                <a href={item?.path}>{item?.name}</a>
               </div>
             ))}
           </div>

@@ -13,12 +13,12 @@ function Headers() {
           className="space-y-8 font-[Poppins] text-center max-w-4xl mx-auto"
         >
           {headerData?.map((item) => (
-            <div key={item.id} className="space-y-4 lg:p-8 p-4">
+            <div key={item?.id} className="space-y-4 lg:p-8 p-4">
               <h1 className="lg:text-[44px] text-[36px] max-sm:text-[32px] font-semibold">
-                {item.title}
+                {item?.title}
               </h1>
               <p className="lg:text-[24px] text-[16px] text-[#FFFFFFCC] leading-relaxed">
-                {item.desc}
+                {item?.desc}
               </p>
             </div>
           ))}
