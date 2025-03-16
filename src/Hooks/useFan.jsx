@@ -4,7 +4,6 @@ import { instance } from './api'
 export function useFan() {
     const [fan, setFan] = useState([]);
     const [loading, setLoading] = useState(false);
-
     useEffect(() => {
         const getData = async () => {
             setLoading(true)
@@ -19,8 +18,7 @@ export function useFan() {
         }
         getData()
     }, [])
-
     return ({ fan, loading })
 }
 
-export default useFan
+export default useFan;

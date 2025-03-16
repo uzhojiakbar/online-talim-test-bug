@@ -4,17 +4,19 @@ import useFan from '../../Hooks/useFan';
 import { NavLink } from 'react-router-dom';
 
 function Homesection1() {
-    const { fan } = useFan();
+    // const { fan,getData } = useFan();
+   
     return (
         <div id="darslar" className="lg:p-16 px-4 overflow-hidden">
-            <div className="text-white text-center">
+            <div data-aos="fade-down" data-aos-duration="500" className="text-white text-center">
                 <h1 className="text-[48px]">Darsliklar</h1>
                 <p className="text-[18px]">Aniq reja bilan yaratilgan darsliklar</p>
             </div>
             <div className="mt-12 p-3 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
-                {fan?.map((item) => (
+                {/* {fan?.map((item) => (
                     <div
                         key={item?.nomi}
+                        data-aos="fade-up"
                         className="bg-[#303d46] flex flex-col justify-between text-center gap-3 p-6 rounded-lg text-white">
                         <div className="bg-white p-4 rounded-full w-24 mx-auto">
                             <img src={att_logo} alt="Logo" />
@@ -27,9 +29,9 @@ function Homesection1() {
                         >
                             Fanga o'tish
                         </NavLink>
-                        <h1 className="mt-6">{item?.teacher}</h1>
+                        <h1 className="mt-6">{item.teacher}</h1>
                     </div>
-                ))}
+                ))} */}
             </div>
         </div>
     );

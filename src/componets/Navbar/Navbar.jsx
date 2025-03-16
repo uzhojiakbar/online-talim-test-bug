@@ -41,8 +41,7 @@ function Navbar() {
         <NavLink
           to={"/register"}
           onClick={() => setOpenForm(true)}
-          className="bg-[#FF6E30] px-6 py-1 rounded-sm hover:bg-[#da6735] transition-all"
-        >
+          className="bg-[#FF6E30] px-6 py-1 rounded-sm hover:bg-[#da6735] transition-all">
           Registratsiya
         </NavLink>
       </div>
