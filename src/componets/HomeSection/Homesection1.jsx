@@ -7,7 +7,7 @@ function Homesection1() {
     const { fan } = useFan();
     return (
         <div id="darslar" className="lg:p-16 px-4 overflow-hidden">
-            <div data-aos="fade-down" data-aos-duration="500" className="text-white text-center">
+            <div className="text-white text-center">
                 <h1 className="text-[48px]">Darsliklar</h1>
                 <p className="text-[18px]">Aniq reja bilan yaratilgan darsliklar</p>
             </div>
@@ -15,7 +15,6 @@ function Homesection1() {
                 {fan?.map((item) => (
                     <div
                         key={item?.nomi}
-                        data-aos="fade-up"
                         className="bg-[#303d46] flex flex-col justify-between text-center gap-3 p-6 rounded-lg text-white">
                         <div className="bg-white p-4 rounded-full w-24 mx-auto">
                             <img src={att_logo} alt="Logo" />
