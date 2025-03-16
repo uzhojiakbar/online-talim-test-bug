@@ -8,7 +8,7 @@ export function useFan() {
         const getData = async () => {
             setLoading(true)
             try {
-                const response = await instance.get('/api/lessons')
+                const response = await instance.get('')
                 setFan(response.data)
                 setLoading(false)
             }

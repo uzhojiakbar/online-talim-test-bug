@@ -1,11 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import att_logo from '../../assets/att_logo.png';
-import useFan from '../../Hooks/useFan';
 import { NavLink } from 'react-router-dom';
-
+import { instance } from '../../Hooks/api'
 function Homesection1() {
-    // const { fan,getData } = useFan();
-   
+
+    const [fan, setFan] = useState([]);
+    const getdata = async () => {
+        try {
+            const response = await instance.get('/api/lessons')
+            console.log(response.data)
+            setFan(response.data)
+        } catch (err) {
+            console.log('Xato', err)
+        }
+    }
+    useEffect(() => {
+        getdata()
+    }, [])
+
+    // 
+
     return (
         <div id="darslar" className="lg:p-16 px-4 overflow-hidden">
             <div data-aos="fade-down" data-aos-duration="500" className="text-white text-center">
@@ -13,7 +27,7 @@ function Homesection1() {
                 <p className="text-[18px]">Aniq reja bilan yaratilgan darsliklar</p>
             </div>
             <div className="mt-12 p-3 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
-                {/* {fan?.map((item) => (
+                {fan?.map((item) => (
                     <div
                         key={item?.nomi}
                         data-aos="fade-up"
@@ -31,7 +45,7 @@ function Homesection1() {
                         </NavLink>
                         <h1 className="mt-6">{item.teacher}</h1>
                     </div>
-                ))} */}
+                ))}
             </div>
         </div>
     );
