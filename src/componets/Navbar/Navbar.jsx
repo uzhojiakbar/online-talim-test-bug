@@ -6,19 +6,15 @@ function Navbar() {
   const [navData, setNavda] = useState([
     {
       id: 1,
-      name: "Uy",
-      path: "/",
+      name: "Bosh sahifa",
+      path: "#",
     },
     {
       id: 2,
       name: "Darslar",
-      manzil: "#darslar",
+      path: "#darslar",
     },
-    {
-      id: 3,
-      name: "Ustozlar",
-      manzil: "#ustozlar",
-    },
+  
     // {
     //     id: 4,
     //     name: 'Blog',
@@ -38,8 +34,8 @@ function Navbar() {
 
       <div className="md:flex hidden gap-6 ">
         {navData?.map((item) => (
-          <div className="cursor-pointer sm:px-4 lg:px-8 py-1" key={item.id}>
-            <a href={item.manzil}>{item.name}</a>
+          <div className="cursor-pointer sm:px-4 lg:px-8 py-1" key={item?.id}>
+            <a href={item?.path}>{item?.name}</a>
           </div>
         ))}
       </div>
@@ -71,9 +67,9 @@ function Navbar() {
             {navData?.map((item) => (
               <div
                 className="cursor-pointer  py-1 px-3 rounded-sm hover:bg-slate-800"
-                key={item.id}
+                key={item?.id}
               >
-                <a href={item.manzil}>{item.name}</a>
+                <a href={item?.manzil}>{item?.name}</a>
               </div>
             ))}
           </div>
