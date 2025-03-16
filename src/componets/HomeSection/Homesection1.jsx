@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import att_logo from '../../assets/att_logo.png'
-import { Rate } from 'antd';
 import useFan from '../../Hooks/useFan';
 import { NavLink } from 'react-router-dom';
 function Homesection1() {
