@@ -4,21 +4,23 @@ import { NavLink } from 'react-router-dom';
 import { instance } from '../../Hooks/api'
 function Homesection1() {
 
-    const [fan, setFan] = useState([]);
-    const getdata = async () => {
-        try {
-            const response = await instance.get('/api/lessons')
-            console.log(response.data)
-            setFan(response.data)
-        } catch (err) {
-            console.log('Xato', err)
-        }
-    }
-    useEffect(() => {
-        getdata()
-    }, [])
+    const [fan, setFan] = useState(
+        [
+            {
+                desc
+                    :
+                    "Kompyter tizimlari va tarmoqlari bu fan 15 ta mavzuni o'z ichiga oladi",
+                teacher
+                    :
+                    "Kamoliddin Xaydarov ",
+                nomi
+                    :
+                    "Kompyter tizimlari va tarmoqlari"
+            },
+        ]
+    );
 
-    // 
+
 
     return (
         <div id="darslar" className="lg:p-16 px-4 overflow-hidden">
