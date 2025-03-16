@@ -1,24 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import { instance } from './api'
+import { useEffect, useState } from 'react';
+import { instance } from './api';
 
 export function useFan() {
     const [fan, setFan] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true); // Defaultda true qilish yaxshiroq
+    const [error, setError] = useState(null); // Xatolarni ham qo'shdim
+
     useEffect(() => {
         const getData = async () => {
-            setLoading(true)
             try {
-                const response = await instance.get('/api/lessons')
-                setFan(response?.data)
-                setLoading(false)
+                const { data } = await instance.get('/api/lessons');
+                setFan(data);
+            } catch (err) {
+                console.error("Ma'lumot olishda xatolik:", err);
+                setError(err);
+            } finally {
+                setLoading(false);
             }
-            catch (error) {
-                console.error(error, "Malumot olish da Hatolik")
-            }
-        }
-        getData()
-    }, [])
-    return ({ fan, loading })
+        };
+
+        getData();
+    }, []);
+
+    return { fan, loading, error }; // errorni ham return qilamiz
 }
 
 export default useFan;

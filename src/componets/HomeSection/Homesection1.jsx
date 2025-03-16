@@ -10,7 +10,7 @@ function Homesection1() {
 
     return (
         <>
-            {fan.length ? <div id="darslar" className="lg:p-16 px-4 overflow-hidden">
+            {false ? <div id="darslar" className="lg:p-16 px-4 overflow-hidden">
                 <div data-aos="fade-down" data-aos-duration="500" className="text-white text-center">
                     <h1 className="text-[48px]">Darsliklar</h1>
                     <p className="text-[18px]">Aniq reja bilan yaratilgan darsliklar</p>
