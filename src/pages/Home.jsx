@@ -10,7 +10,6 @@ function Home() {
       <Navbar/>
       <Headers/>
       <Homesection1/>
-      <Corusel/>
       <Footer/>
     </div>
   )
