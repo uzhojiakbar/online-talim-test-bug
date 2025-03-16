@@ -1,7 +1,12 @@
 import React from 'react';
-import { headerData } from '../../utils/HeaderData';
 
 function Headers() {
+  const headerData =
+  {
+    id: 1,
+    title: "Bu yerda siz Fan bo'yicha barcha savollaringziga javob topasiz",
+    desc: "bu yerda video darsliklar  turli xil testla va fanga doir barcha materiallarni topishingiz mumkin"
+  }
   return (
     <div className="text-white pt-8 bgimg lg:h-[80vh] h-[100vh] bg-cover bg-center bg-no-repeat relative">
       {/* Overlay */}
@@ -12,16 +17,15 @@ function Headers() {
           data-aos="zoom-in-up"
           className="space-y-8 font-[Poppins] text-center max-w-4xl mx-auto"
         >
-          {headerData?.map((item) => (
-            <div key={item?.id} className="space-y-4 lg:p-8 p-4">
-              <h1 className="lg:text-[44px] text-[36px] max-sm:text-[32px] font-semibold">
-                {item?.title}
-              </h1>
-              <p className="lg:text-[24px] text-[16px] text-[#FFFFFFCC] leading-relaxed">
-                {item?.desc}
-              </p>
-            </div>
-          ))}
+          <div className="space-y-4 lg:p-8 p-4">
+            <h1 className="lg:text-[44px] text-[36px] max-sm:text-[32px] font-semibold">
+              {headerData.title}
+            </h1>
+            <p className="lg:text-[24px] text-[16px] text-[#FFFFFFCC] leading-relaxed">
+              {headerData.desc}
+            </p>
+          </div>
+
         </div>
       </div>
     </div>
