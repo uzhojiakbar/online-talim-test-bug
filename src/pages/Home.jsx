@@ -6,7 +6,7 @@ import Footer from '../componets/Footer/Footer'
 function Home() {
   return (
     <div>
-      {/* <Navbar/> */}
+      <Navbar/>
       <Headers/>
       <Homesection1/>
       <Footer/>
